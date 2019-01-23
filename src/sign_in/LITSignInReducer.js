@@ -1,10 +1,10 @@
 import React from 'react';
 import { List, Map, fromJS } from 'immutable'; 
-import LITReducer from '../reducers/LITReducer'; 
+import LITReducer from 'lit-react/src/LITReducer'; 
 import LITGETToken from '../network/LITGETToken';
 import LITGETUserInfo from '../network/LITGETUserInfo';
 import { setToken } from '../session';
-
+import p from '../rPath';
 
 export default class LITSignInReducer extends LITReducer{
 
@@ -34,12 +34,18 @@ export default class LITSignInReducer extends LITReducer{
                     var res = await LITGETUserInfo();
                     console.log('res -> '+JSON.stringify(res, null, 2));
                     // s.setIn
+                    console.log('p.user -> '+JSON.stringify(p.user, null, 2));
+                    console.log('fromJS(res) -> '+JSON.stringify(fromJS(res), null, 2));
+
+                    s.set(p.user, fromJS(res));
+                    
+                    console.log('state -> '+JSON.stringify(s.getState(), null, 2));
                 }
         
             }catch(e){
-                console.log('e e -> '+JSON.stringify(e, null, 2));
+                console.log('e -> '+JSON.stringify(e, null, 2));
 
-                dispatch ( r.processing.DISMISS() );
+                // dispatch ( r.processing.DISMISS() );
                 return e;
             }
             

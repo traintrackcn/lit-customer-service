@@ -6,9 +6,9 @@ import thunk from 'redux-thunk'
 // import { persistStore, persistReducer } from 'redux-persist-immutable';
 // import storage from 'redux-persist/lib/storage';
 
-import LITStore from './LITStore';
+import LITStore from 'lit-react/src/LITStore';
 // const logger = createLogger();
-import LITRootReducer from './reducers/LITRootReducer';
+import LITRootReducer from './model/LITRootReducer';
 // import { pref } from './pref';
 
 export const r = new LITRootReducer();
@@ -46,3 +46,8 @@ appendKeyValueToReducer(r, 's', s);
 appendKeyValueToReducer(r, 'r', r);
 
 export default s;
+
+
+
+
+
