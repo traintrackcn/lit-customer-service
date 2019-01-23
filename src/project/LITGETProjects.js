@@ -4,7 +4,7 @@ import { LITFetch, LITFetchInfo } from '../network/LITFetch';
 export default () => {
     return new Promise( async (resolve, reject) => {
     
-        let type = 'projects.json';
+        let type = 'tracker/projects.json?limit=100';
 
         let info = LITFetchInfo({
             method: "GET",
@@ -14,11 +14,12 @@ export default () => {
         
             
         try {   
-            const response = await LITFetch({info});
-            resolve(response);
-        } catch (error) {
+            const res = await LITFetch({info});
+            console.log('res -> '+JSON.stringify(res, null, 2));
+            resolve(res);
+        } catch (e) {
             // console.log('error -> '+JSON.stringify(error, null, 2));
-            reject({ error: error });
+            reject(e);
         }
 
     });

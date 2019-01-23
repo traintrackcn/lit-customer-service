@@ -5,8 +5,6 @@ import {
     Button
 } from 'reactstrap';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
-import LITGETUserInfo from '../network/LITGETUserInfo';
-import LITGETToken from '../network/LITGETToken';
 import s, {r} from '../store';
 
 

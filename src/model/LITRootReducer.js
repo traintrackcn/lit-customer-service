@@ -1,6 +1,7 @@
 import LITReducer from 'lit-react/src/LITReducer';
 import { Map } from 'immutable';
 import LITSignInReducer from '../sign_in/LITSignInReducer';
+import LITProjectReducer from '../project/LITProjectReducer';
 
 export default class LITRootReducer extends LITReducer{
 
@@ -9,8 +10,10 @@ export default class LITRootReducer extends LITReducer{
         super();
 
         this.signIn = new LITSignInReducer();
+        this.prj = new LITProjectReducer();
 
         this.subReducers.signIn = this.signIn;
+        this.subReducers.prj = this.prj;
     }
 
     main(state = Map(), action) {

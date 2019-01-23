@@ -1,16 +1,15 @@
 import React from 'react';
 import { List, Map, fromJS } from 'immutable'; 
 import LITReducer from 'lit-react/src/LITReducer'; 
-import LITGETToken from './LITGETToken';
-import LITGETUserInfo from '../network/LITGETUserInfo';
 import { setToken } from '../local';
 import p from '../rPath';
+import LITGETProjects from './LITGETProjects';
 
-export default class LITSignInReducer extends LITReducer{
+export default class LITProjectReducer extends LITReducer{
 
 
 
-    fetch({user, pwd}) {
+    fetch() {
         
         return async (dispatch) => {
 
@@ -22,22 +21,12 @@ export default class LITSignInReducer extends LITReducer{
                 console.log("r -> "+r);
                 console.log("s -> "+s);
                 
-                var token = await LITGETToken({
-                    user: user, 
-                    pwd: pwd
-                });
-                console.log("token -> "+token);
+                var res = await LITGETProjects();
     
-                if (token) {
-                    setToken(token);
-                    // var res = await LITGETUserInfo();
-                    // console.log('res -> '+JSON.stringify(res, null, 2));
+                s.set(p.prj.collection, fromJS(res.projects));
+                s.set(p.prj.index, 0);
+                console.log('state -> '+JSON.stringify(s.getState(), null, 2));
                 
-                    // s.set(p.user, fromJS(res.user));
-                    s.set(p.token, token);
-                    
-                    console.log('state -> '+JSON.stringify(s.getState(), null, 2));
-                }
         
             }catch(e){
                 console.log('e -> '+JSON.stringify(e, null, 2));

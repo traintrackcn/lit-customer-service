@@ -1,31 +1,19 @@
 import React, { PureComponent } from 'react';
-
-
 import LITSignIn from './sign_in/LITSignIn';
-import {getToken, removeToken} from './session';
 import LITAuthorizedMain from './LITAuthorizedMain';
+import s from './store';
+import p from './rPath';
+import { connect } from 'react-redux';
 
-
-export default class LITMain extends PureComponent {
+class LITMain extends PureComponent {
 
     constructor() {
         super();
-
-        // removeToken();
-
-        this.state = {
-            token: getToken()
-        };
-
-
-        removeToken();
     }
-
-
 
     render() {
 
-        let token = this.state.token;
+        let token = this.props.token;
 
         return (
             <div>
@@ -46,3 +34,19 @@ export default class LITMain extends PureComponent {
         );
     }
 }
+
+
+
+const mapStateToProps = (state /*, ownProps*/) => {
+    let token = s.get(p.token);
+    return {
+        token: token
+    }
+  }
+  
+//   const mapDispatchToProps = { increment, decrement, reset }
+  
+  export default connect(
+    mapStateToProps
+    // mapDispatchToProps
+  )(LITMain)

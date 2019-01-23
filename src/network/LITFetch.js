@@ -1,5 +1,5 @@
 import { host, endPoint, protocol } from './LITNetworkDefine';
-import { getToken } from '../session';
+import { getToken } from '../local';
 
 export const LITFetchInfo = ({ user, pwd, headers = {}, method = 'GET', type = 'INVALID', body = {} }) => {
 

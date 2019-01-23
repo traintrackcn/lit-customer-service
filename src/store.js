@@ -1,10 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import thunk from 'redux-thunk'
 // import { createLogger } from 'redux-logger'
-// import { persistStore, persistReducer } from 'redux-persist';
-// import { persistStore, persistReducer } from 'redux-persist-immutable';
-// import storage from 'redux-persist/lib/storage';
+import { offline } from '@redux-offline/redux-offline';
+import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
 
 import LITStore from 'lit-react/src/LITStore';
 // const logger = createLogger();
@@ -23,6 +22,18 @@ export const store = createStore(rootReducer,
         // logger// neat middleware that logs actions
     )
 );
+
+
+// export const store = createStore(rootReducer,
+//     compose(
+//         applyMiddleware(thunk),
+//         offline(offlineConfig)
+//     )
+// );
+
+
+
+
 
 const s = new LITStore(store);
 s.r = r;
