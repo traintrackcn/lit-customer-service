@@ -1,8 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import { List, Map, fromJS } from 'immutable'; 
 import LITReducer from 'lit-react/src/LITReducer'; 
 import LITGETToken from './LITGETToken';
-import LITGETUserInfo from '../network/LITGETUserInfo';
+// import LITGETUserInfo from '../network/LITGETUserInfo';
 import { setToken } from '../local';
 import p from '../rPath';
 
@@ -36,7 +36,7 @@ export default class LITSignInReducer extends LITReducer{
                     // s.set(p.user, fromJS(res.user));
                     s.set(p.token, token);
                     
-                    console.log('state -> '+JSON.stringify(s.getState(), null, 2));
+                    // console.log('state -> '+JSON.stringify(s.getState(), null, 2));
                 }
         
             }catch(e){

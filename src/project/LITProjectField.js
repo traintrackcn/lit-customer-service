@@ -3,7 +3,7 @@ import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { ListGroupItem, ListGroup, Badge, Spinner } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
 import LITProjectItemView from './LITProjectItemView';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
 
@@ -11,7 +11,10 @@ class LITProjectField extends PureComponent {
 
     constructor() {
         super();
-        this.onClick = this.onClick.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            dropdownOpen: false
+        };
     }
 
     async componentDidMount(){
@@ -21,31 +24,39 @@ class LITProjectField extends PureComponent {
 
     }
 
-    onClick() {
-        console.log('onclick');
+    toggle() {
+        console.log('toggle');
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+          }));
     }
 
     render() {
+
+        let prj = this.props.value;
+
+        let title = 'loading ...';
+
+        if (prj){
+            title = prj.get('name');
+        }
+
         return (
-            <ListGroup 
-                flush
-                style={{
-                    padding: '10px',
-                // border: '1px solid', 
-                WebkitOverflowScrolling: 'touch',
-                overflow: 'scroll', height: '100%'}}>
-
-
-        <div style={{paddingBottom: '10px', fontWeight: 'bold', alignItems:'center', justifyContent: 'center'}}>
-        <img src={logo} alt="Logo" style={{width: '30px', height: '30px'}}/>
-        </div>
-        
-    
-
-            {
-                this.items()
-            }
-            </ListGroup>
+            <Dropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+          {title}
+        </DropdownToggle >
+        <DropdownMenu>
+          {/* <DropdownItem header>Header</DropdownItem>
+          <DropdownItem>Some Action</DropdownItem>
+          <DropdownItem disabled>Action (disabled)</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>Foo Action</DropdownItem>
+          <DropdownItem>Bar Action</DropdownItem> */}
+          {/* <DropdownItem>Quo Action</DropdownItem> */}
+          {this.items()}
+        </DropdownMenu>
+      </Dropdown>
                 
         );
     }
@@ -56,24 +67,22 @@ class LITProjectField extends PureComponent {
         let idx = this.props.index;
 
         if (!collection) {
-            return <div style={{
-                display:'flex', 
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%', height: '100%'}}><Spinner color="primary" /></div>;
+            return null;
         }
 
         let arr = [];
         collection.map((value, key) => {
-            console.log('key -> '+key);
-            console.log('value -> '+value)
+            // console.log('key -> '+key);
+            // console.log('value -> '+value)
             let title = value.get('name');
             // const value = collection[key];
             arr.push(  
                 <LITProjectItemView 
+                    key={key}
                     index={key}
                     active={(key==idx)}
                     title={title}
+                    value={value}
                 />
             );
         });
@@ -89,6 +98,7 @@ const mapStateToProps = (state /*, ownProps*/) => {
     return {
         collection: s.get(p.prj.collection),
         index: s.get(p.prj.index),
+        value: s.get(p.prj.value),
     }
   }
   

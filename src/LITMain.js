@@ -7,10 +7,6 @@ import { connect } from 'react-redux';
 
 class LITMain extends PureComponent {
 
-    constructor() {
-        super();
-    }
-
     render() {
 
         let token = this.props.token;

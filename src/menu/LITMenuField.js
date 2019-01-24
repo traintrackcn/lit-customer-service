@@ -7,6 +7,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
 import LITMenuItemView from './LITMenuItemView';
 import { MENU_BILLING, MENU_INVOICE, MENU_DASHBOARD } from './LITMenuDefine';
+// import LITProjectField from '../project/LITProjectField';
 
 class LITMenuField extends PureComponent {
 
@@ -16,13 +17,7 @@ class LITMenuField extends PureComponent {
 
     render() {
 
-        let idx = this.props.index;
-        let collection = this.props.collection;
-
-        if(!collection) return null;
-
-        let prj = collection.get(idx);
-
+        let prj = this.props.prj;
         if (!prj) return null;
 
         let value = this.props.value;
@@ -30,12 +25,7 @@ class LITMenuField extends PureComponent {
         return (
             <div style={{padding: 10}}>
                 
-                <div style={{
-                    paddingBottom: 5,
-                    fontSize: 13,
-                    color: '#666',
-                }}>{prj.get('name')}</div>
-
+                
                 <Nav pills>
                         <LITMenuItemView 
                         title={"Dashboard"}
@@ -43,11 +33,11 @@ class LITMenuField extends PureComponent {
                         current={value}
                         />
 
-                    <LITMenuItemView 
+                    {/* <LITMenuItemView 
                         title={"Invoice"}
                         value={MENU_INVOICE}
                         current={value}
-                        />
+                        /> */}
 
                     <LITMenuItemView 
                         title={"Billing"}
@@ -66,8 +56,7 @@ class LITMenuField extends PureComponent {
 
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
-        collection: s.get(p.prj.collection),
-        index: s.get(p.prj.index),
+        prj: s.get(p.prj.value),
         value: s.get(p.menu)
     }
 }

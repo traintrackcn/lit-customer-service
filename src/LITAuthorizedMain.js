@@ -40,6 +40,7 @@ export default class LITAuthorizedMain extends PureComponent {
 
         const browserW = this.state.width;
         const browserH = this.state.height;
+        let menuH = 60;
 
         return (
             <Container fluid style={{
@@ -48,59 +49,47 @@ export default class LITAuthorizedMain extends PureComponent {
                 width: browserW,
                 height: browserH
                 }}>
-            <Row noGutters
-                style={{
-                    // border:'1px solid',
-                    height: '100%',
-                }}
-            >
 
+                {/* <Row noGutters 
+                    style={{
+                        padding: 10,
+                        backgroundColor: '#FDFBD8',
+                        // backgroundColor: '#FDFBD8',
+                        // borderTop: 'solid 1px #CCC',
+                        borderBottom: 'solid 1px #CCC',
+                    }}>
+                <Col xs='auto'><LITProjectField /></Col>
+                </Row> */}
                 
-                <Col xs={2} style={{
-                    borderRight:'1px solid #ccc',
-                    height: '100%',
-                    // backgroundColor: 'white',
-                }}>
+                <Row noGutters 
+                    style={{
+                        // padding: 10,
+                        backgroundColor: '#FDFBD8',
+                        // backgroundColor: '#FDFBD8',
+                        // borderTop: 'solid 1px #CCC',
+                        borderBottom: 'solid 1px #CCC',
+                    }}>
+                <Col xs='auto'>
+                <div style={{
+                    padding: 10, paddingRight: 0, 
+                    display: 'flex',height: '100%', justifyContent:'center', alignItems: 'center'}}>
                 <LITProjectField />
-                    {/* <Route path="/:company/:platform/:category" component={LITCategory} /> */}
-                </Col>
+                </div></Col>
+                <Col><LITMenuField /></Col>
+                
+                </Row>
 
-
-                <Switch>
-                {/* <Route path="/:company/:platform/:category" component={LITDashboard} />
-                <Route path="/:company/:platform" component={LITAdvanceDashboard} /> */}
-                </Switch>
-
-                <Col style={{
-                    // backgroundColor: 'gray',
-                    // padding: 0,
-                }}>
-                    <Container style={{padding: 0}}>
-
-                        <Row noGutters style={{
-                            width: '100%',
-                            
-                            // backgroundColor: '#FDFBD8',
-                        }}> 
-                        
-                        <LITMenuField />
-                        </Row>
-
-                        <Row noGutters style={{
-                            width: '100%',
-                            // height: '60px',
-                            border: 'solid 1px',
-                        }}> 
-                        <LITContentField />
-                        </Row>
-
-                    </Container>
+                
                 
 
-                </Col>
-                
-            </Row>
-            
+                <Row noGutters style={{
+                    width: '100%',
+                    // height: (browserH- menuH),
+                    // border: 'solid 1px',
+                }}> 
+                <LITContentField />
+                </Row>
+
 
             
 

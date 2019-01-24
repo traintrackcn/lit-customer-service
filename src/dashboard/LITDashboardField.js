@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
+import LITRecentIssueField from '../issue/LITRecentIssueField';
 
 class LITDashboardField extends PureComponent {
 
@@ -11,8 +12,10 @@ class LITDashboardField extends PureComponent {
 
     render() {
         return (
-            <div style={{padding: 10}}>
-                Dashboard Field
+            <div style={{padding: 0, width: '100%'}}>
+
+                <LITRecentIssueField
+                    />
 
             </div>
         );
@@ -23,6 +26,7 @@ class LITDashboardField extends PureComponent {
 
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
+        prj: s.get(p.prj.value)
     }
 }
   

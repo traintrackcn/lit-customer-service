@@ -1,7 +1,6 @@
-import React from 'react';
-import { List, Map, fromJS } from 'immutable'; 
-import LITReducer from 'lit-react/src/LITReducer'; 
-import { setToken } from '../local';
+// import React from 'react';
+import { Map, fromJS } from 'immutable'; 
+import LITReducer from 'lit-react/src/LITReducer';
 import p from '../rPath';
 import LITGETProjects from './LITGETProjects';
 
@@ -22,10 +21,18 @@ export default class LITProjectReducer extends LITReducer{
                 console.log("s -> "+s);
                 
                 var res = await LITGETProjects();
-    
-                s.set(p.prj.collection, fromJS(res.projects));
-                s.set(p.prj.index, 0);
-                console.log('state -> '+JSON.stringify(s.getState(), null, 2));
+                let collection = fromJS(res.projects);
+                s.set(p.prj.collection, collection);
+
+                // console.log("collection.size ->", collection.size);
+
+                if(collection.size > 0){
+                  s.set(p.prj.index, 0);
+                  s.set(p.prj.value, collection.get(0));
+                }
+
+
+                // console.log('state -> '+JSON.stringify(s.getState(), null, 2));
                 
         
             }catch(e){

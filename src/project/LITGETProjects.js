@@ -1,4 +1,3 @@
-import React from 'react';
 import { LITFetch, LITFetchInfo } from '../network/LITFetch';
 
 export default () => {
@@ -15,7 +14,7 @@ export default () => {
             
         try {   
             const res = await LITFetch({info});
-            console.log('res -> '+JSON.stringify(res, null, 2));
+            // console.log('res -> '+JSON.stringify(res, null, 2));
             resolve(res);
         } catch (e) {
             // console.log('error -> '+JSON.stringify(error, null, 2));

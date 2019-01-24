@@ -15,7 +15,9 @@ class LITContentField extends PureComponent {
 
     render() {
 
-        if (!this.props.prjCollection) return null;
+        let prj = this.props.prj;
+
+        if (!prj) return null;
 
         let value = this.props.value;
 
@@ -23,10 +25,11 @@ class LITContentField extends PureComponent {
 
 
         return (
-            <div style={{padding: 10}}>
+            <div style={{padding: 0, width: '100%'}}>
+
                 {
                     value === MENU_DASHBOARD &&
-                    <LITDashboardField />
+                    <LITDashboardField/>
                 }
 
                 {
@@ -49,7 +52,7 @@ class LITContentField extends PureComponent {
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
         value: s.get(p.menu),
-        prjCollection: s.get(p.prj.collection)
+        prj: s.get(p.prj.value)
     }
 }
   

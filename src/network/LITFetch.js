@@ -47,8 +47,8 @@ export const LITFetch = ( { info } ) => {
             // const response = await fetch(info.url, demoParams);
             console.log('response.status -> '+response.status);
             console.log('response.ok -> '+response.ok);
-            console.log('response.type -> '+response.type);
-            console.log('raw response -> '+JSON.stringify(response, null, 2));
+            // console.log('response.type -> '+response.type);
+            // console.log('raw response -> '+JSON.stringify(response, null, 2));
         
             if (!response.ok){
                 // console.log ('fetch failed -> '+JSON.stringify(response));

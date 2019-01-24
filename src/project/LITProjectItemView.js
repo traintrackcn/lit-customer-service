@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
-import { ListGroupItem } from 'reactstrap';
+import { DropdownItem } from 'reactstrap';
 
 export default class LITProjectItemView extends PureComponent {
 
@@ -12,8 +12,10 @@ export default class LITProjectItemView extends PureComponent {
 
     onClick() {
         let idx = this.props.index;
-        console.log('onclick -> '+idx);
+        let value = this.props.value;
+        // console.log('onclick -> '+idx);
         s.set(p.prj.index, idx);
+        s.set(p.prj.value, value);
     }
 
     render() {
@@ -22,7 +24,7 @@ export default class LITProjectItemView extends PureComponent {
         let title = this.props.title;
 
         return (
-            <ListGroupItem
+            <DropdownItem
                 // tag="a" href="javascript:alert()"
                 active={active}
                 // action
@@ -37,7 +39,7 @@ export default class LITProjectItemView extends PureComponent {
             >
                 {title} 
                 {/* <Badge pill>14</Badge> <Badge pill>ios</Badge> */}
-            </ListGroupItem>
+            </DropdownItem>
                 
         );
     }
