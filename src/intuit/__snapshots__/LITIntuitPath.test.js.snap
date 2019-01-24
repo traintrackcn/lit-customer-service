@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`p.intuit.config should be r,intuit,config 1`] = `
+Array [
+  "r",
+  "intuit",
+  "config",
+]
+`;

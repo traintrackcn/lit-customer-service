@@ -1,9 +1,11 @@
 import { host, endPoint, protocol } from './LITNetworkDefine';
 import { getToken } from '../local';
 
-export const LITFetchInfo = ({ user, pwd, headers = {}, method = 'GET', type = 'INVALID', body = {} }) => {
+export const LITFetchInfo = ({ url,  headers = {}, method = 'GET', type = 'INVALID', body = {} }) => {
 
-    let url = endPoint + type;
+    // let url = url;
+    if (!url) url = endPoint + type;
+
     let apiKey = getToken();
 
     let defaultHeaders = {

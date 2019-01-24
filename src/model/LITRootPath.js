@@ -1,8 +1,7 @@
 
-import LITPath from 'lit-react/src/LITPath';
 import LITProjectPath from '../project/LITProjectPath';
-import LITCommonPath from 'lit-react/src/LITCommonPath';
-// import LITSignUpPath from './LITSignUpPath';
+import LITPath from 'lit-react/src/LITPath';
+import LITIntuitPath from '../intuit/LITIntuitPath';
 
 export default class LITRootPath extends LITPath{
     constructor(path){
@@ -16,5 +15,6 @@ export default class LITRootPath extends LITPath{
 
         this.prj = new LITProjectPath(this.path.concat('prj'));
         this.menu = this.path.concat('menu');
+        this.intuit = new LITIntuitPath(this.path.concat('intuit'));
     }
 }
