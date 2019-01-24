@@ -8,40 +8,6 @@ export default class LITIntuitReducer extends LITReducer{
 
 
 
-    // fetchConfig() {
-        
-    //     return async (dispatch) => {
-
-    //         const r = this.r;
-    //         const s = this.s;
-
-    //         try{
-
-    //             console.log("r -> "+r);
-    //             console.log("s -> "+s);
-                
-    //             var res = await LITGETIntuitConfiguration();
-    //             // let collection = fromJS(res.projects);
-    //             // console.log('res -> ', JSON.stringify(res, null, 2));
-    //             s.set(p.intuit.config, fromJS(res));
-
-
-    //             console.log('intuit state -> '+JSON.stringify(s.get(p.intuit), null, 2));
-                
-        
-    //         }catch(e){
-    //             console.log('e -> '+JSON.stringify(e, null, 2));
-
-    //             // dispatch ( r.processing.DISMISS() );
-    //             return e;
-    //         }
-            
-            
-    //     }
-
-    // }
-
-
 
   main(state=Map(), action){
 

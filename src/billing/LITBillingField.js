@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
-import SendToIntuit from '../intuit/LITSendToIntuit';
+import LITIntuitAuthField from '../intuit/LITIntuitAuthField';
 
 class LITBillingField extends PureComponent {
 
@@ -17,8 +17,7 @@ class LITBillingField extends PureComponent {
     render() {
         return (
             <div style={{padding: 10}}>
-                Billing Field
-                <SendToIntuit />
+                <LITIntuitAuthField />
             </div>
         );
     }

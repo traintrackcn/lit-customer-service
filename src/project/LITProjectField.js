@@ -3,7 +3,7 @@ import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownMenu, Spinner } from 'reactstrap';
 import LITProjectItemView from './LITProjectItemView';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
 
@@ -35,11 +35,10 @@ class LITProjectField extends PureComponent {
 
         let prj = this.props.value;
 
-        let title = 'loading ...';
+        if (!prj) return (<Spinner color="primary" />);
 
-        if (prj){
-            title = prj.get('name');
-        }
+        let title = prj.get('name');
+        
 
         return (
             <Dropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>

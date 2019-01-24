@@ -11,7 +11,7 @@ export const LITFetchInfo = ({ url,  headers = {}, method = 'GET', type = 'INVAL
     let defaultHeaders = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'origin': 'x-requested-with',
+        // 'origin': 'x-requested-with',
         "X-Redmine-API-Key": apiKey,
     };
 
