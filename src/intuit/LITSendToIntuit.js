@@ -1,34 +1,49 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { OauthSender } from 'react-oauth-flow';
 import s from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';  
-import { scopes, clientId } from './intuit';
+import { scopes, clientId, clientSecret, authorizeUrl, redirectUrl, tokenUrl } from './intuit';
 import { Spinner } from 'reactstrap';
  
-class SendToIntuit extends Component {
+class SendToIntuit extends PureComponent {
+
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(){
+
+    console.log('onclick()');
+
+    var ClientOAuth2 = require('client-oauth2');
+ 
+    var auth = new ClientOAuth2({
+      clientId: clientId(),
+      clientSecret: clientSecret(),
+      accessTokenUri: tokenUrl(),
+      authorizationUri: authorizeUrl(),
+      redirectUri: redirectUrl(),
+      scopes: scopes,
+      state: '{"from":"billing"}'
+    });
+
+
+    window.open(auth.code.getUri())
+
+  }
+
   render() {
 
-    let config = this.props.config;
-
-    console.log('config -> '+JSON.stringify(config, null, 2))
-    
-    if (!config) return <Spinner />;
-
-    let authorizeUrl = config.get('authorization_endpoint');
-    // let tokenUrl = config.get('token_endpoint');
-    // let clientId = ;
-    let redirectUri = 'http://localhost:3000/intuit/callback';
-
     return (
-      <OauthSender
-        authorizeUrl={authorizeUrl}
-        clientId={clientId()}
-        redirectUri={redirectUri}
-        state={{ from: '/settings' }}
-        args={{ scope: scopes.join(' ') }}
-        render={({ url }) => <a href={url}>Connect to Intuit</a>}
-      />
+
+      <div onClick={this.onClick}>
+
+        connect to intuit
+      </div>
+
+  
     );
   }
 }
@@ -36,7 +51,7 @@ class SendToIntuit extends Component {
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
-      config: s.get(p.intuit.config)
+      // config: s.get(p.intuit.config)
   }
 }
 

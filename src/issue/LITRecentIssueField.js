@@ -21,7 +21,7 @@ class LITRecentIssueField extends PureComponent {
 
     async request() {
 
-        console.log('this.props -> '+JSON.stringify(this.props, null, 2));
+        // console.log('this.props -> '+JSON.stringify(this.props, null, 2));
 
         let prj = this.props.prj;
 

@@ -11,7 +11,7 @@ class LITBillingField extends PureComponent {
     // }
 
     async componentDidMount() {
-        let e = s.dispatch(r.intuit.fetchConfig());
+        // let e = s.dispatch(r.intuit.fetchConfig());
     }
 
     render() {

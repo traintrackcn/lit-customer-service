@@ -1,18 +1,32 @@
 let production = false;
 
-export const configurationUrl= () => {
+// export const configurationUrl= () => {
 
-    if (production){
-        return "https://developer.api.intuit.com/.well-known/openid_configuration/";
-    }
+//     if (production){
+//         return "https://developer.api.intuit.com/.well-known/openid_configuration/";
+//     }
 
-    return "https://developer.api.intuit.com/.well-known/openid_sandbox_configuration/";
+//     return "https://developer.api.intuit.com/.well-known/openid_sandbox_configuration/";
+// }
+
+
+export const authorizeUrl = () => {
+    return "https://appcenter.intuit.com/connect/oauth2";
+}
+
+export const tokenUrl = () => {
+    return "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
+}
+
+export const revokeUrl = () => {
+    return "https://developer.api.intuit.com/v2/oauth2/tokens/revoke";
 }
 
 export const scopes = [
                 "com.intuit.quickbooks.accounting",
                 "com.intuit.quickbooks.payment"
              ];
+    
 
 export const clientId = () => {
     if (production) return "Q0Gv6EbLcGXdVWdpvXrvpZ2alTyPsUAJFbAL4uJBb18AIS3paL";
