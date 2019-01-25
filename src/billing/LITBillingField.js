@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
+import LITIntuitCompanyField from '../intuit/LITIntuitCompanyField';
 
 class LITBillingField extends PureComponent {
 
@@ -16,6 +17,7 @@ class LITBillingField extends PureComponent {
     render() {
         return (
             <div style={{padding: 10}}>
+            <LITIntuitCompanyField />
             </div>
         );
     }
