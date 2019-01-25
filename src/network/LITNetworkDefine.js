@@ -1,9 +1,10 @@
 // export const host = "10.0.1.5:8080/0/tracker";
 // export const host = "litmonitor.asuscomm.com:8888/0/tracker"
-const host = "api-dev.abovegem.com/MONITOR/0/"
+// const host = "api-dev.abovegem.com/MONITOR/0/"
 // const host = "litmonitor.asuscomm.com:8888/0/"
-const protocol = "https://";
-export const endPoint = protocol+host;
+// const protocol = "https://";
+// export const endPoint = "https://api-dev.abovegem.com/MONITOR/0/";
+export const endPoint = "http://litmonitor.asuscomm.com:8888/0/";
 
 
 // export let proxyProtocol = "http://";
