@@ -6,7 +6,8 @@ import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING } from './menu/LITMenuDefine
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
 import LITBillingField from './billing/LITBillingField';
-import { Switch, Route } from 'react-router-dom'
+// import { Switch, Route } from 'react-router-dom'
+import menuS from './menu/menu.module.css';
 
 class LITContentField extends PureComponent {
 
@@ -26,8 +27,12 @@ class LITContentField extends PureComponent {
 
 
         return (
-            <div style={{padding: 0, width: '100%'}}>
+            <div style={{padding: 0, 
+                width: '100%', 
+                // border: '1px solid'
+                }}>
 
+            
 
                 {/* <Switch>
                     <Route path="/intuit/callback" component={LITReceiveFromIntuit} />

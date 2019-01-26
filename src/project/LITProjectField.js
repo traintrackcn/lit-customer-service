@@ -35,14 +35,20 @@ class LITProjectField extends PureComponent {
 
         let prj = this.props.value;
 
-        if (!prj) return (<Spinner color="primary" />);
+        if (!prj) return (<Spinner color="light" size="sm" type="grow" />);
 
         let title = prj.get('name');
-        
+        title = title.replace(/Development -/i, 'Dev -');
 
         return (
-            <Dropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
+            <Dropdown size="sm" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret 
+        style={{
+            backgroundColor: '#2C3340',
+            borderWidth: 0,
+        }}
+        color="primary"
+        >
           {title}
         </DropdownToggle >
         <DropdownMenu>

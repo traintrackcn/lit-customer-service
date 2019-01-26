@@ -96,7 +96,7 @@ class LITRecentIssueField extends PureComponent {
                 display:'flex', 
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '100%', height: '100%'}}><Spinner color="primary" /></div>;
+                width: '100%', height: '100%'}}><Spinner color="primary" type="grow" /></div>;
         }
 
         let arr = [];

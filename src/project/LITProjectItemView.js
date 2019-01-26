@@ -23,6 +23,8 @@ export default class LITProjectItemView extends PureComponent {
         let active = this.props.active;
         let title = this.props.title;
 
+        title = title.replace(/Development -/i, 'Dev -');
+
         return (
             <DropdownItem
                 // tag="a" href="javascript:alert()"

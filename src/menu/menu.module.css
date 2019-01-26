@@ -1,0 +1,28 @@
+.sub {
+    margin-top: 0px;
+    margin-right: 4px;
+    /* margin-bottom: 6px; */
+    padding-left: 4px; padding-right: 4px;
+    border-radius: 4px;
+    /* height: 30px; */
+    /* border: 1px solid; */
+    /* text-align: justify; */
+    
+}
+
+.selected {
+    /* color: #333333; */
+    color: #FFF;
+    /* color: #DDB973; */
+    /* font-weight: bold; */
+    background-color: #007BFF;
+
+}
+
+.normal {
+    /* color: #FFF; */
+    color: #007BFF;
+    text-decoration: underline;
+    cursor: pointer;
+    /* background-color: #007BFF; */
+}

@@ -5,6 +5,8 @@ import layoutS from './layout.test.module.css';
 import LITProjectField from './project/LITProjectField';
 import LITMenuField from './menu/LITMenuField';
 import LITContentField from './LITContentField';
+import logo from './images/logo.png'; // Tell Webpack this JS file uses this image
+import menuS from './menu/menu.module.css';
 
 
 export default class LITAuthorizedMain extends PureComponent {
@@ -50,36 +52,47 @@ export default class LITAuthorizedMain extends PureComponent {
                 height: browserH
                 }}>
 
-                {/* <Row noGutters 
-                    style={{
-                        padding: 10,
-                        backgroundColor: '#FDFBD8',
-                        // backgroundColor: '#FDFBD8',
-                        // borderTop: 'solid 1px #CCC',
-                        borderBottom: 'solid 1px #CCC',
-                    }}>
-                <Col xs='auto'><LITProjectField /></Col>
-                </Row> */}
+                 
                 
                 <Row noGutters 
                     style={{
-                        // padding: 10,
-                        backgroundColor: '#FDFBD8',
-                        // backgroundColor: '#FDFBD8',
-                        // borderTop: 'solid 1px #CCC',
-                        borderBottom: 'solid 1px #CCC',
                     }}>
-                <Col xs='auto'>
-                <div style={{
-                    padding: 10, paddingRight: 0, 
-                    display: 'flex',height: '100%', justifyContent:'center', alignItems: 'center'}}>
+                <Col xs='12' style={{
+                    padding: 0,
+                    backgroundColor: '#2C3340',
+                    }}>
                 <LITProjectField />
-                </div></Col>
-                <Col><LITMenuField /></Col>
-                
+                </Col>
                 </Row>
 
-                
+                <Row noGutters 
+                    style={{
+                        backgroundColor: '#007BFF',
+                    }}>
+                <Col xs='12' style={{
+                    paddingLeft: 5,
+                    }}>
+                <LITMenuField />
+                </Col>
+                </Row>
+
+                <Row noGutters
+                    style={{
+                        paddingLeft: 10,
+                        // paddingBottom: 6,
+                        paddingTop: 6,
+                        // border: '1px solid',
+                        // background: '#007BFF'
+                    }}>
+                    {/* <div style={{height: 0.5, width: '100%', backgroundColor: '#FFF'}}></div> */}
+                    <span className={[menuS.sub, menuS.selected].join(' ')}>submenu</span>
+                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
+                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
+                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
+                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
+                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
+                    {/* <div style={{height: 4, width: '100%', border: 'solid 0px'}}></div> */}
+                </Row>
                 
 
                 <Row noGutters style={{
