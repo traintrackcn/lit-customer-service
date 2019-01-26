@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import s, {r} from './store';
 import p from './rPath';
 import { connect } from 'react-redux';
-import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING } from './menu/LITMenuDefine';
+import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu } from './menu/LITMenuDefine';
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
 import LITBillingField from './billing/LITBillingField';
@@ -21,9 +21,8 @@ class LITContentField extends PureComponent {
 
         if (!prj) return null;
 
-        let value = this.props.value;
+        let value = currentMenu(this.props.value);
 
-        if (!value) value= MENU_DASHBOARD;
 
 
         return (

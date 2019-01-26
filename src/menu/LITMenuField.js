@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 import { Dropdown, DropdownToggle, DropdownMenu, Spinner } from 'reactstrap';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
 import LITMenuItemView from './LITMenuItemView';
-import { MENU_BILLING, MENU_INVOICE, MENU_DASHBOARD, MENU_APP_PREFERENCES, menuTitles, menuKeys } from './LITMenuDefine';
+import { MENU_BILLING, MENU_INVOICE, MENU_DASHBOARD, MENU_APP_PREFERENCES, menuTitles, menuKeys, currentMenu } from './LITMenuDefine';
 // import LITProjectField from '../project/LITProjectField';
 
 class LITMenuField extends PureComponent {
@@ -33,7 +33,7 @@ class LITMenuField extends PureComponent {
         if (!prj) return null;
 
         // let title = prj.get('name');
-        let current = this.current();
+        let current = currentMenu(this.props.value);
         let title = this.title(current);
 
         return (
@@ -56,11 +56,7 @@ class LITMenuField extends PureComponent {
         );
     }
 
-    current() {
-        let current = this.props.value;
-        if (!current) return MENU_DASHBOARD;
-        return current;
-    }
+    
 
     title(value) {
         // let titles = ["Dashboard", "Invoice", "Billing", "App Preferences"];
@@ -70,7 +66,7 @@ class LITMenuField extends PureComponent {
 
 
     items() {
-        let current = this.current();
+        let current = currentMenu(this.props.value);
         // let menu = [MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, MENU_APP_PREFERENCES];
         // let titles = ["Dashboard", "Invoice", "Billing"];
         let arr = [];
