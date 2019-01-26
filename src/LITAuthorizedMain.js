@@ -78,7 +78,7 @@ export default class LITAuthorizedMain extends PureComponent {
 
                 <Row noGutters
                     style={{
-                        paddingLeft: 10,
+                        paddingLeft: 15,
                         // paddingBottom: 6,
                         paddingTop: 6,
                         // border: '1px solid',

@@ -38,7 +38,7 @@ class LITProjectField extends PureComponent {
         if (!prj) return (<Spinner color="light" size="sm" type="grow" />);
 
         let title = prj.get('name');
-        title = title.replace(/Development -/i, 'Dev -');
+        // title = title.replace(/Development -/i, 'Dev -');
 
         return (
             <Dropdown size="sm" isOpen={this.state.dropdownOpen} toggle={this.toggle}>

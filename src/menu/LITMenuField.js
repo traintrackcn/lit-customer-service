@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 import { Dropdown, DropdownToggle, DropdownMenu, Spinner } from 'reactstrap';
 import logo from '../images/logo.png'; // Tell Webpack this JS file uses this image
 import LITMenuItemView from './LITMenuItemView';
-import { MENU_BILLING, MENU_INVOICE, MENU_DASHBOARD } from './LITMenuDefine';
+import { MENU_BILLING, MENU_INVOICE, MENU_DASHBOARD, MENU_APP_PREFERENCES, menuTitles, menuKeys } from './LITMenuDefine';
 // import LITProjectField from '../project/LITProjectField';
 
 class LITMenuField extends PureComponent {
@@ -61,22 +61,21 @@ class LITMenuField extends PureComponent {
     }
 
     title(value) {
-        let menu = [MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING];
-        let titles = ["Dashboard", "Invoice", "Billing"];
-        let idx = menu.indexOf(value);
-        return titles[idx];
+        // let titles = ["Dashboard", "Invoice", "Billing", "App Preferences"];
+        let idx = menuKeys.indexOf(value);
+        return menuTitles[idx];
     }
 
 
     items() {
         let current = this.current();
-        let menu = [MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING];
-        let titles = ["Dashboard", "Invoice", "Billing"];
+        // let menu = [MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, MENU_APP_PREFERENCES];
+        // let titles = ["Dashboard", "Invoice", "Billing"];
         let arr = [];
 
-        menu.forEach(
+        menuKeys.forEach(
             (value, index)=>{
-                let title = titles[index];
+                let title = menuTitles[index];
                 let key = value;
                 let active = (key === current);
                 arr.push(  
