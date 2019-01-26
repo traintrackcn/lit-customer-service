@@ -42,7 +42,9 @@ class LITMenuField extends PureComponent {
             isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle caret 
                 color="primary"
-                // style={{height: 25}}
+                style={{
+                    fontWeight: 'bold',
+                }}
                 >
                 {title}
                 </DropdownToggle >

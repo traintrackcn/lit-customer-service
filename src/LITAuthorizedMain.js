@@ -69,10 +69,27 @@ export default class LITAuthorizedMain extends PureComponent {
                     style={{
                         backgroundColor: '#007BFF',
                     }}>
-                <Col xs='12' style={{
+                <Col  style={{
                     paddingLeft: 5,
+                    // flexDirection: 'row',
                     }}>
                 <LITMenuField />
+                
+                </Col>
+                <Col style={{
+                    color: '#FFF', 
+                    // height: 90px;
+                    // lineHeight: '100%',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    fontSize: 12,
+                    // textAlign: 'right',
+                    alignItems: 'center',
+                    // verticalAlign: 'middle',
+                    // border: 'solid 1px',
+                    paddingRight: 10,
+                    }}>
+                Tao Yunfei
                 </Col>
                 </Row>
 
