@@ -2,11 +2,12 @@ import React, { PureComponent } from 'react';
 import s, {r} from './store';
 import p from './rPath';
 import { connect } from 'react-redux';
-import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu } from './menu/LITMenuDefine';
+import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu, MENU_APP_PREFERENCES } from './menu/LITMenuDefine';
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
 import LITBillingField from './billing/LITBillingField';
 import contentS from './css/content.module.css';
+import LITAppConfigField from './app_config/LITAppConfigField';
 // import { Switch, Route } from 'react-router-dom'
 
 class LITContentField extends PureComponent {
@@ -47,6 +48,11 @@ class LITContentField extends PureComponent {
                 {
                     value === MENU_BILLING &&
                     <LITBillingField />
+                }
+
+                {
+                    value === MENU_APP_PREFERENCES  &&
+                    <LITAppConfigField />
                 }
 
             </div>

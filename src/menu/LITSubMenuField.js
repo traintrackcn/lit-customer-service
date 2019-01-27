@@ -3,7 +3,8 @@ import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
 import LITBillingMenu from '../billing/LITBillingMenu';
-import { currentMenu, MENU_BILLING } from './LITMenuDefine';
+import { currentMenu, MENU_BILLING, MENU_APP_PREFERENCES } from './LITMenuDefine';
+import LITAppConfigMenu from '../app_config/LITAppConfigMenu';
 
 class LITSubMenuField extends PureComponent {
 
@@ -26,6 +27,11 @@ class LITSubMenuField extends PureComponent {
                 {
                     menu === MENU_BILLING &&
                     <LITBillingMenu />
+                }
+
+                {
+                    menu === MENU_APP_PREFERENCES &&
+                    <LITAppConfigMenu />
                 }
                 
             </div>

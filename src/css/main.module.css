@@ -8,3 +8,22 @@
     /* border: solid 1px; */
     height: 100%;
 }
+
+.active {
+    background-color: #169E0F;
+    color: white;
+}
+
+.inactive {
+    /* background-color: #eeeeee; */
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+.disableTextSelection {
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+  }

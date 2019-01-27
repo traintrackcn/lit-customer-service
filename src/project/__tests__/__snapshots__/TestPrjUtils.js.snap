@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Array [
+  "Elite 2018.9~2018.12",
+  "Basic 2017.8~2017.8",
+  "Basic 2015.11~2017.1",
+]
+`;
+
+exports[` 2`] = `"MON"`;
+
+exports[` 3`] = `"Customer A|Customer B"`;
