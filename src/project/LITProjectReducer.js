@@ -27,8 +27,10 @@ export default class LITProjectReducer extends LITReducer{
                 // console.log("collection.size ->", collection.size);
 
                 if(collection.size > 0){
-                  s.set(p.prj.index, 0);
-                  s.set(p.prj.value, collection.get(0));
+                  let defaultIdx = 0;
+                  defaultIdx = 4;
+                  s.set(p.prj.index, defaultIdx);
+                  s.set(p.prj.value, collection.get(defaultIdx));
                 }
 
 

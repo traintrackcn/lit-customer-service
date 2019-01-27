@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
-import LITIntuitCompanyField from '../intuit/LITIntuitCompanyField';
+import billingS from '../css/billing.module.css';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 class LITBillingField extends PureComponent {
 
@@ -15,9 +16,39 @@ class LITBillingField extends PureComponent {
     }
 
     render() {
+
+        let submenu = this.props.submenu;
+        
+        console.log('submenu -> '+submenu);
+
         return (
-            <div style={{padding: 0}}>
-            {/* <LITIntuitCompanyField /> */}
+            <div className={[billingS.main].join(' ')}>
+            {/* {submenu} */}
+
+            <div style={{border: 'solid 1px'}}>
+            <div style={{fontWeight: 'bold'}}>
+                #2018-1@VBN
+            </div>
+            </div>
+
+            <div style={{border: 'solid 1px'}}>
+            <div style={{fontWeight: 'bold'}}>
+                #2018-1@VBN
+            </div>
+            </div>
+
+            <div style={{border: 'solid 1px'}}>
+            <div style={{fontWeight: 'bold'}}>
+                #2018-1@VBN
+            </div>
+            </div>
+
+            <div style={{border: 'solid 1px'}}>
+            <div style={{fontWeight: 'bold'}}>
+                #2018-1@VBN
+            </div>
+            </div>
+
             </div>
         );
     }
@@ -27,6 +58,7 @@ class LITBillingField extends PureComponent {
 
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
+        submenu: s.get(p.submenu.value)
     }
 }
   

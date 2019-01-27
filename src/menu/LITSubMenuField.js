@@ -17,14 +17,14 @@ class LITSubMenuField extends PureComponent {
 
     render() {
 
-        let menuKey = currentMenu(this.props.menuKey);
+        let menu = currentMenu(this.props.menu);
 
         // console.log(m);
 
         return (
             <div>
                 {
-                    menuKey === MENU_BILLING &&
+                    menu === MENU_BILLING &&
                     <LITBillingMenu />
                 }
                 
@@ -37,7 +37,7 @@ class LITSubMenuField extends PureComponent {
 
 const mapStateToProps = (state /*, ownProps*/) => {
     return {
-        menuKey: s.get(p.menu)
+        menu: s.get(p.menu)
     }
 }
   

@@ -6,6 +6,7 @@ import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu } from './menu/
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
 import LITBillingField from './billing/LITBillingField';
+import contentS from './css/content.module.css';
 // import { Switch, Route } from 'react-router-dom'
 
 class LITContentField extends PureComponent {
@@ -25,10 +26,7 @@ class LITContentField extends PureComponent {
 
 
         return (
-            <div style={{padding: 0, 
-                width: '100%', 
-                // border: '1px solid'
-                }}>
+            <div className={[contentS.main].join(' ')}>
 
             
 
