@@ -16,8 +16,8 @@ class LITBillingField extends PureComponent {
 
     render() {
         return (
-            <div style={{padding: 10}}>
-            <LITIntuitCompanyField />
+            <div style={{padding: 0}}>
+            {/* <LITIntuitCompanyField /> */}
             </div>
         );
     }

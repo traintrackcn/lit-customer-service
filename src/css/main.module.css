@@ -1,0 +1,10 @@
+.personalInfo {
+    color: #FFF;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    align-items: center;
+    padding-right: 10px;
+    /* border: solid 1px; */
+    height: 100%;
+}

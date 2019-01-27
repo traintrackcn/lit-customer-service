@@ -4,10 +4,21 @@
     /* margin-bottom: 6px; */
     padding-left: 4px; padding-right: 4px;
     border-radius: 4px;
+    font-size: 14px;
     /* height: 30px; */
     /* border: 1px solid; */
     /* text-align: justify; */
+    display: inline-block;
     
+}
+
+.subContainer {
+    /* display: inline-block; */
+    padding-top: 6px;
+    padding-left: 15px;
+    /* border: solid 1px; */
+    width: 100%;
+    /* overflow: auto; */
 }
 
 .selected {

@@ -13,7 +13,7 @@ export default () => {
     
         try {   
             const response = await LITFetch({info});
-            resolve(response);
+            resolve(response.user);
         } catch (e) {
             // console.log('error -> '+JSON.stringify(error, null, 2));
             reject(e);

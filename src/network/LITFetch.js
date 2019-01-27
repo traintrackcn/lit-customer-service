@@ -1,12 +1,13 @@
 import { host, endPoint, protocol } from './LITNetworkDefine';
-import { getToken } from '../local';
+import s from '../store';
+import p from '../rPath';
 
 export const LITFetchInfo = ({ url,  headers = {}, method = 'GET', type = 'INVALID', body = {} }) => {
 
     // let url = url;
     if (!url) url = endPoint + type;
 
-    let apiKey = getToken();
+    let apiKey = s.get(p.user.apiKey);
 
     let defaultHeaders = {
         'Accept': 'application/json',

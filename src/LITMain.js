@@ -9,34 +9,21 @@ class LITMain extends PureComponent {
 
     render() {
 
-        let token = this.props.token;
+        let userId = this.props.userId;
 
-        return (
-            <div>
-            
-            { 
-                token &&
-                <LITAuthorizedMain />
-            }
-            
-            {
-              !token &&
-              <LITSignIn />
-            }
-            
+        if (userId) return (<LITAuthorizedMain />);
 
-            </div>
-            
-        );
+        return (<LITSignIn />);
+
     }
 }
 
 
 
 const mapStateToProps = (state /*, ownProps*/) => {
-    let token = s.get(p.token);
+    let userId = s.get(p.user.id);
     return {
-        token: token
+        userId: userId
     }
   }
   

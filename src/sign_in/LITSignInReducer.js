@@ -2,9 +2,10 @@
 import { List, Map, fromJS } from 'immutable'; 
 import LITReducer from 'lit-react/src/LITReducer'; 
 import LITGETToken from './LITGETToken';
-// import LITGETUserInfo from '../network/LITGETUserInfo';
-import { setToken } from '../local';
+import LITGETUserInfo from '../network/LITGETUserInfo';
+import { KEY_USER_DATA } from '../local';
 import p from '../rPath';
+import local from '../local';
 
 export default class LITSignInReducer extends LITReducer{
 
@@ -22,21 +23,21 @@ export default class LITSignInReducer extends LITReducer{
                 console.log("r -> "+r);
                 console.log("s -> "+s);
                 
-                var token = await LITGETToken({
+                var resOfGETToken = await LITGETToken({
                     user: user, 
                     pwd: pwd
                 });
-                console.log("token -> "+token);
+
+                console.log('resOfGETToken ->', JSON.stringify(resOfGETToken, null, 2));
     
-                if (token) {
-                    setToken(token);
-                    // var res = await LITGETUserInfo();
-                    // console.log('res -> '+JSON.stringify(res, null, 2));
+                if (resOfGETToken) {
+
+                    s.set(p.user, fromJS(resOfGETToken) );
+
+                    var resOfLITGETUserInfo = await LITGETUserInfo();
+                    local.set(KEY_USER_DATA, JSON.stringify(resOfLITGETUserInfo));
+                    s.set(p.user, fromJS(resOfLITGETUserInfo));
                 
-                    // s.set(p.user, fromJS(res.user));
-                    s.set(p.token, token);
-                    
-                    // console.log('state -> '+JSON.stringify(s.getState(), null, 2));
                 }
         
             }catch(e){

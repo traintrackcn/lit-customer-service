@@ -2,13 +2,14 @@
 import LITProjectPath from '../project/LITProjectPath';
 import LITPath from 'lit-react/src/LITPath';
 import LITIntuitPath from '../intuit/LITIntuitPath';
+import LITUserPath from '../user/LITUserPath';
 
 export default class LITRootPath extends LITPath{
     constructor(path){
         super(path);
         // this.signUp = new LITSignUpPath(this.path.concat(['signUp']));
-        this.token = this.path.concat('token');
-        this.user = this.path.concat('user');
+        // this.token = this.path.concat('token');
+        this.user = new LITUserPath(this.path.concat('user'));
 
         // console.log
         // console.log('path -> '+this.path.concat('prj');

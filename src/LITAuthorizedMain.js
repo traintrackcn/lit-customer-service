@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import layoutS from './layout.test.module.css';
+// import layoutS from './css/main.module.css';
 import LITProjectField from './project/LITProjectField';
 import LITMenuField from './menu/LITMenuField';
 import LITContentField from './LITContentField';
 import logo from './images/logo.png'; // Tell Webpack this JS file uses this image
-import menuS from './menu/menu.module.css';
+import LITSubMenuField from './menu/LITSubMenuField';
+import LITUserInfoField from './user/LITUserInfoField';
 
 
 export default class LITAuthorizedMain extends PureComponent {
@@ -42,7 +43,7 @@ export default class LITAuthorizedMain extends PureComponent {
 
         const browserW = this.state.width;
         const browserH = this.state.height;
-        let menuH = 60;
+        // let menuH = 60;
 
         return (
             <Container fluid style={{
@@ -76,48 +77,21 @@ export default class LITAuthorizedMain extends PureComponent {
                 <LITMenuField />
                 
                 </Col>
-                <Col style={{
-                    color: '#FFF', 
-                    // height: 90px;
-                    // lineHeight: '100%',
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    fontSize: 12,
-                    // textAlign: 'right',
-                    alignItems: 'center',
-                    // verticalAlign: 'middle',
-                    // border: 'solid 1px',
-                    paddingRight: 10,
-                    }}>
-                Tao Yunfei
+                <Col>
+                <LITUserInfoField />
                 </Col>
                 </Row>
 
-                <Row noGutters
-                    style={{
-                        paddingLeft: 15,
-                        // paddingBottom: 6,
-                        paddingTop: 6,
-                        // border: '1px solid',
-                        // background: '#007BFF'
-                    }}>
-                    {/* <div style={{height: 0.5, width: '100%', backgroundColor: '#FFF'}}></div> */}
-                    <span className={[menuS.sub, menuS.selected].join(' ')}>submenu</span>
-                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
-                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
-                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
-                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
-                    <span className={[menuS.sub, menuS.normal].join(' ')}>submenu</span>
-                    {/* <div style={{height: 4, width: '100%', border: 'solid 0px'}}></div> */}
+                <Row noGutters>
+                    <LITSubMenuField />                 
                 </Row>
                 
 
                 <Row noGutters style={{
                     width: '100%',
-                    // height: (browserH- menuH),
                     // border: 'solid 1px',
                 }}> 
-                <LITContentField />
+                    <LITContentField />
                 </Row>
 
 

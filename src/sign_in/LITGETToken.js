@@ -18,9 +18,8 @@ export default ({ user, pwd }) => {
 
         
         try {   
-            const response = await LITFetch({info});
-            let token = response['api_key'];
-            resolve(token);
+            const res = await LITFetch({info});
+            resolve(res);
         } catch (e) {
             // console.log('error -> '+JSON.stringify(error, null, 2));
             reject(e);
