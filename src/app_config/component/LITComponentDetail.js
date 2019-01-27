@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Container, Row, Col } from 'reactstrap';
 import LITCodeEditor from '../LITCodeEditor';
-import s from './component.module.css';
+import componentS from './component.module.css';
 import mainS from '../../css/main.module.css';
+import '../../index.css';
 import { isActive } from '../LITAppConfigDefine';
 export default class LITComponentDetail extends PureComponent{
 
@@ -80,30 +81,27 @@ export default class LITComponentDetail extends PureComponent{
         let stateStyle = active?mainS.active:mainS.inactive;
         const externalCloseBtn = <button className="close" style={{ position: 'absolute', width: '100%', height: '100%'}} onClick={this.props.onClose}></button>;
         
+        console.log('componentS.modal ->', JSON.stringify(componentS.modal, null, 2));
 
         return (
-            <Modal isOpen={isOpen} backdrop  external={externalCloseBtn} fade={true} onClosed={this.onClosed}>
+            <Modal
+                size='xl'
+                isOpen={isOpen} 
+                backdrop  
+                external={externalCloseBtn} 
+                fade={true} 
+                onClosed={this.onClosed}
+                className={'modal-default'}
+                // modalClassName={'modal-default'}
+                // centered
+                >
                 
-                    <Container fluid 
-                        style={{
-                            backgroundColor:'red',
-                            width: '100%',
-                            padding: '0px',
-                            borderRadius: '3px 3px 0px 0px',
-                            overflow: 'hidden',
-                            }}>
-                        <Row noGutters className={[stateStyle].join(' ')}>
-                            <Col
-                                style={{
-                                    padding:10,
-                                    paddingLeft: 15,
-                                }} 
-                                xs="12">
-                                <div  className={[s.detailTitle].join(' ')}>{title}</div> 
-                                <div  className={[s.detailDescription].join(' ')}></div>{description}
-                            </Col>
-                        </Row>
-                    </Container>  
+                    <div className={["component-detail-container", stateStyle].join(' ')}>
+                
+                        <div  className={['component-detail-title'].join(' ')}>{title}</div> 
+                        <div  className={['component-detail-description'].join(' ')}></div>
+                        {description}
+                    </div>
                     <div style={{height: 500, width: '100%'}}>
                     <LITCodeEditor value={rules} onChange={this.onCodeChange}/>
                     </div>

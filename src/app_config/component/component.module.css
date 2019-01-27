@@ -1,4 +1,4 @@
-.detailTitle {
+/* .detailTitle {
     font-size: 18px;
     font-weight: bold;
 }
@@ -6,7 +6,7 @@
 .detailDescription {
     border: 0px solid;
     font-size: 14px;
-}
+} */
 
 .switchContainer {
     display: flex;
@@ -56,3 +56,8 @@
     /* -webkit-overflow-scrolling: touch; */
 }
 
+
+.modal {
+    width: 800px;
+    border: 4px red;
+}
