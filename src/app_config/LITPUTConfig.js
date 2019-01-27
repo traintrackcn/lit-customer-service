@@ -1,4 +1,5 @@
-import { LITFetch, LITFetchInfo } from './LITFetch';
+import LITBackOfficeFetchInfo from './LITBackOfficeFetchInfo';
+import { LITFetch } from '../network/LITFetch';
 
 export default ({state, company, platform}) => {
 
@@ -11,7 +12,7 @@ export default ({state, company, platform}) => {
 
     return new Promise( async (resolve, reject) => {
         const method = 'PUT';
-        const info = LITFetchInfo({
+        const info = LITBackOfficeFetchInfo({
             method: method,
             company: company,
             type: 'apps/'+platform+'/settings',

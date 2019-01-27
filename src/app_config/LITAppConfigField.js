@@ -78,11 +78,12 @@ class LITAppConfigField extends PureComponent {
 
     render() {
         const state = this.state.state;
-        if (!this.state.state) return (<Spinner type='grow' />);
+        if (!this.state.state) return (<Spinner type='grow' color='primary' />);
 
         // let match = this.props.match;
         // let params = match.params;
         let category = this.props.submenu;
+        let platform = this.platform;
         if (!category) return null;
 
         const collection = state[category]
@@ -98,6 +99,19 @@ class LITAppConfigField extends PureComponent {
             <Row noGutters style={{
                 // border: '5px solid #999'
             }}>
+            <div style={{
+                        width: '100%',
+                        padding: 5,
+                        backgroundColor: '#FEFBDF',
+                        // display: 'inline-block',
+                    }}>
+                    
+                    
+                    <span style={{marginRight: 10,display: 'inline-block', color: '#492E01', fontWeight: 'bold', fontSize: 13}}>platform -> {platform}</span>
+                    
+                  
+                    
+                </div>
                 {this.cols(collection, keys)}
 
                 {
@@ -114,6 +128,8 @@ class LITAppConfigField extends PureComponent {
                 
                 
             </Row>
+
+            
             </Container>
         );
     }

@@ -1,4 +1,4 @@
-import { host, endPoint, protocol } from './LITNetworkDefine';
+import { endPoint } from './LITNetworkDefine';
 import s from '../store';
 import p from '../rPath';
 

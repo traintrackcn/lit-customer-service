@@ -1,4 +1,5 @@
-import { LITFetch, LITFetchInfo } from './LITFetch';
+import LITBackOfficeFetchInfo from './LITBackOfficeFetchInfo';
+import { LITFetch } from '../network/LITFetch';
 import { categories } from './LITAppConfigDefine';
 
 export default ({company, platform}) => {
@@ -11,7 +12,7 @@ export default ({company, platform}) => {
         let type = 'apps/'+platform+'/settings';
         // let url = 
 
-        const info = LITFetchInfo({
+        const info = LITBackOfficeFetchInfo({
            type: type,
             company: company,
         });

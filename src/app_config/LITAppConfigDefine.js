@@ -3,6 +3,7 @@ export const categories = [
     "fn",
     "misc",
     'example',
+    "ADVANCED",
 ];
 
 export const platform = 'rn';
@@ -13,7 +14,7 @@ export const lit = {
     // code: 'VBN',
     
     dev: {
-        endpoint: 'http://api.abovegem.com:11442/api/v3/',
+        // endpoint: 'http://api.abovegem.com:11442/api/v3/',
         client: {
             id: 'ZlnElLNFjFt6pOBAOQpH8e',
             secret: 'HeFsCAvsXTzpHWAqRVWCibsUYlF7gjpLRUAUw551r',
@@ -21,7 +22,7 @@ export const lit = {
     },
 
     pro: {
-        endpoint: 'https://api3.abovegem.com:8443/api/v3/',
+        // endpoint: 'https://api3.abovegem.com:8443/api/v3/',
         client: {
             id: 'MNENQyECCH8AismbCHp9io',
             secret: '44fjgte3APAZjHrWC6bPCB35teftl0R9YXUjEt4kA',
