@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Array [
+  "r",
+  "appConfig",
+  "company",
+]
+`;
+
+exports[` 2`] = `
+Array [
+  "r",
+  "appConfig",
+  "platform",
+]
+`;
+
+exports[` 3`] = `
+Array [
+  "r",
+  "appConfig",
+  "category",
+]
+`;
+
+exports[` 4`] = `undefined`;

@@ -47,5 +47,6 @@ export const isInternal = (key) => {
 export const isActive = (key, value) => {
     const internal = isInternal(key);
     if (internal) return true;
-    return value.active?value.active:false;
+
+    return value.get('active')?value.get('active'):false;
 }

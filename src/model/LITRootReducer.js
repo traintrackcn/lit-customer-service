@@ -3,6 +3,7 @@ import { Map } from 'immutable';
 import LITSignInReducer from '../sign_in/LITSignInReducer';
 import LITProjectReducer from '../project/LITProjectReducer';
 import LITIntuitReducer from '../intuit/LITIntuitReducer';
+import LITAppConfigReducer from '../app_config/LITAppConfigReducer';
 
 export default class LITRootReducer extends LITReducer{
 
@@ -13,10 +14,12 @@ export default class LITRootReducer extends LITReducer{
         this.signIn = new LITSignInReducer();
         this.prj = new LITProjectReducer();
         this.intuit = new LITIntuitReducer();
+        this.appConfig = new LITAppConfigReducer();
 
         this.subReducers.signIn = this.signIn;
         this.subReducers.prj = this.prj;
         this.subReducers.intuit = this.intuit;
+        this.subReducers.appConfig = this.appConfig;
     }
 
     main(state = Map(), action) {

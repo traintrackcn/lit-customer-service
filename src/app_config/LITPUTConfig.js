@@ -1,14 +1,14 @@
 import LITBackOfficeFetchInfo from './LITBackOfficeFetchInfo';
 import { LITFetch } from '../network/LITFetch';
 
-export default ({state, company, platform}) => {
+export default ({value, company, platform}) => {
 
-    if (!state || !company || !platform){
+    if (!value || !company || !platform){
         throw { 'reason': 'invalid PUT'};
     }
 
     let body = {};
-    body.settings = state;
+    body.settings = value;
 
     return new Promise( async (resolve, reject) => {
         const method = 'PUT';
