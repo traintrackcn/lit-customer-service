@@ -1,5 +1,4 @@
 import LITPath from 'lit-react/src/LITPath';
-import LITCommonPath from 'lit-react/src/LITCommonPath';
 
 export default class LITAppConfigPath extends LITPath{
     constructor(path){

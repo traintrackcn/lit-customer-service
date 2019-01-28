@@ -7,6 +7,7 @@ import { getConfig } from '../project/prj-utils';
 // import LITPUTConfig from './LITPUTConfig';
 import { Row, Container, Spinner, Col } from 'reactstrap';
 import LITAppConfigItemView from './LITAppConfigItemView';
+import LITAppConfigDetail from './LITAppConfigDetail';
 
 class LITAppConfigField extends PureComponent {
 
@@ -53,7 +54,13 @@ class LITAppConfigField extends PureComponent {
 
 
     onClick(key, value){
-        console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
+        let category = this.props.category;
+        // console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
+        s.dispatch(r.nav.PUSH({
+            // comp: LITAppConfigDetail,
+            key: key, 
+            category: category
+        }));
     }
       
 
@@ -71,7 +78,7 @@ class LITAppConfigField extends PureComponent {
         return (
             <Container fluid style={{
                 // border:'solid 1px', 
-                padding: 0}}>
+                padding: 10}}>
             <Row noGutters style={{
                 // border: '5px solid #999'
             }}>

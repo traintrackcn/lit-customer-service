@@ -3,52 +3,59 @@ import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
 import { getConfig } from '../project/prj-utils';
-import LITGETConfig from './LITGETConfig';
-import LITPUTConfig from './LITPUTConfig';
-import { Row, Container, Spinner, Button } from 'reactstrap';
+import { Spinner, Button } from 'reactstrap';
 import LITCodeEditor from './LITCodeEditor';
+import { fromJS } from 'immutable';
 
 class LITAppConfigAdvField extends PureComponent {
-    constructor(){
-        super();
+
+    constructor(props){
+        super(props);
+        // this.state = {value: props.value};
         this.state = {};
         this.onCodeChange = this.onCodeChange.bind(this);
         this.onSave = this.onSave.bind(this);
-        this.platform = 'rn';
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
 
-    
-    
-    
+    async run({prj, platform}) {
+        
+        if (!prj) return;
 
-    async componentWillMount(){
-        console.log('LITAppConfigField componentWillMount()');
-        const company = this.companyCode();
-        const platform = this.platform;
+        console.log('LITAppConfigAdvField run() prj ->',prj.get('id'));
 
-        const state = await LITGETConfig({company, platform});
+        if (prj === this.prj 
+            && platform === this.platform) return;
 
-        this.setState({
-            'state': state
+        this.prj = prj;
+        this.platform = platform;
+
+        let companyCode = getConfig(prj, 'code');
+        console.log('companyCode -> '+companyCode);
+        s.set(p.appConfig.company, companyCode);
+        s.del(p.appConfig.value);
+        
+        await s.dispatch(r.appConfig.get());
+
+        let value = s.get(p.appConfig.value);
+        this.setState({value: value.toJS()});
+    }
+
+
+    componentWillMount(){
+        this.run({
+            prj: this.props.prj,
+            platform: this.props.platform
         });
     }
 
-    componentDidMount() {
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-      }
-      
-      componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWindowDimensions);
-      }
-
-
-      updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-      }
-
+    async componentWillReceiveProps(nextProps){
+        console.log('LITAppConfigAdvField componentWillReceiveProps()');
+        this.run({
+            prj: nextProps.prj,
+            platform: nextProps.platform,
+        });
+    }
 
     onCodeChange({newValue, changed }){
         console.log("onCodeChange");
@@ -58,46 +65,37 @@ class LITAppConfigAdvField extends PureComponent {
         });
     }
 
-    companyCode() {
-        let prj = this.props.prj;
-        if(!prj) return;
-
-        return getConfig(prj, 'code');
-
-    }
-
     async onSave(){
-        const company = this.companyCode();
-        const platform = this.platform;
         const newValue = this.state.newValue;
         console.log('newValue -> '+JSON.stringify(newValue, null, 2));
 
-        LITPUTConfig({
-            state: newValue,
-            company: company,
-            platform: platform
-        });
+        s.set(p.appConfig.value, fromJS(newValue));
 
         this.setState({
-            state: newValue,
+            value: newValue,
             newValue: undefined, 
             changed: undefined
         });
+
+        await s.dispatch(r.appConfig.put())
+
+        
     }
 
     render() {
-        const state = this.state.state;
-        // if (!this.state.state) return null;
-        if (!this.state.state) return (<Spinner type='grow' color='primary' />);
+        const loading = this.props.loading;
+        let value = this.state.value;
+        
+        if (loading) return (<Spinner type='grow' color='primary' />);
+        if (!value) return null;
 
-        const company = this.companyCode();
-        const platform = this.platform;
+        // const company = this.props.company;
+        const platform = this.props.platform;
         const changed = this.state.changed;
 
         console.log('render()');
 
-        const browserH = this.state.height;
-        const h = browserH - 150;
+        const h = 500;
         // if (!component) return null;
         return (
             <div style={{border: '0px solid', height: h,}}>
@@ -110,9 +108,6 @@ class LITAppConfigAdvField extends PureComponent {
                         // display: 'inline-block',
                     }}>
                     
-                    
-                    <span style={{marginRight: 10,display: 'inline-block', color: '#492E01', fontWeight: 'bold', fontSize: 13}}>platform -> {platform}</span>
-                    
                     {
                         changed &&
                         <span style={{display: 'inline-block'}}>
@@ -121,9 +116,9 @@ class LITAppConfigAdvField extends PureComponent {
                     }
                     
                 </div>
-                    
-                <LITCodeEditor value={state} onChange={this.onCodeChange}/>
-                
+                <div style={{padding: 10, height: '50vh'}}>
+                <LITCodeEditor value={value} onChange={this.onCodeChange}/>
+                </div>
 
                 
                 
@@ -135,12 +130,12 @@ class LITAppConfigAdvField extends PureComponent {
 
 
 const mapStateToProps = (state /*, ownProps*/) => {
+    let loading = s.get(p.appConfig.loading);
     return {
-        submenu: s.get(p.submenu.value),
-        prj: s.get(p.prj.value)
+        platform: s.get(p.appConfig.platform),
+        prj: s.get(p.prj.value),
+        loading: loading
     }
 }
-  
-//   const mapDispatchToProps = { increment, decrement, reset }
   
 export default connect(mapStateToProps)(LITAppConfigAdvField)

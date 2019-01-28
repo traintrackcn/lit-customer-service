@@ -3,6 +3,7 @@ import { Map, fromJS } from 'immutable';
 import LITReducer from 'lit-react/src/LITReducer';
 import p from '../rPath';
 import LITGETProjects from './LITGETProjects';
+import local, { KEY_PRJ_DATA } from '../local';
 
 export default class LITProjectReducer extends LITReducer{
 
@@ -19,9 +20,17 @@ export default class LITProjectReducer extends LITReducer{
 
                 console.log("r -> "+r);
                 console.log("s -> "+s);
+
+                var prjs = JSON.parse(local.get(KEY_PRJ_DATA));
+
+                if (!prjs){
+                  let res = await LITGETProjects();
+                  prjs = res.projects;
+                  local.set(KEY_PRJ_DATA, JSON.stringify(prjs));
+                }
                 
-                var res = await LITGETProjects();
-                let collection = fromJS(res.projects);
+                // var res = await LITGETProjects();
+                let collection = fromJS(prjs);
                 s.set(p.prj.collection, collection);
 
                 // console.log("collection.size ->", collection.size);

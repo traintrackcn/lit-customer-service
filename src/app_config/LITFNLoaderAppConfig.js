@@ -2,23 +2,41 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
-import { getConfig } from '../project/prj-utils';
 import LITAppConfigAdvField from './LITAppConfigAdvField';
 import LITAppConfigField from './LITAppConfigField';
 import LITAppConfigNavigator from './LITAppConfigNavigator';
+import LITAppConfigDetail from './LITAppConfigDetail';
 
 class LITFNLoaderAppConfig extends PureComponent {
 
     render(){
 
-        let submenu = this.props.submenu;
+        let category = this.props.category;
+        let nav = this.props.nav;
 
+        if (nav){
+
+            console.log('nav -> ', JSON.stringify(nav));
+            return (
+                <div>
+                    <LITAppConfigDetail 
+                        theKey={nav.get('key')}
+                        category={nav.get('category')}
+                    />
+                </div>
+            );
+        }
+
+        // console.log('category -> ', category);
         return (
+
+
             <div style={{
                 // border: '1px solid'
                 }}>
                 <LITAppConfigNavigator />
-                {   submenu === "ADVANCED" &&
+                
+                {   category === "ADVANCED" &&
                     <LITAppConfigAdvField />
                 }
 
@@ -33,9 +51,12 @@ class LITFNLoaderAppConfig extends PureComponent {
 
 
 const mapStateToProps = (state /*, ownProps*/) => {
+
+    let nav = s.get(p.nav.current);
+
     return {
-        submenu: s.get(p.submenu.value),
-        prj: s.get(p.prj.value)
+        nav:  nav, 
+        category: s.get(p.appConfig.category)
     }
 }
   

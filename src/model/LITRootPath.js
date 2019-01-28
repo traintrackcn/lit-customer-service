@@ -5,6 +5,7 @@ import LITIntuitPath from '../intuit/LITIntuitPath';
 import LITUserPath from '../user/LITUserPath';
 import LITCommonPath from 'lit-react/src/LITCommonPath';
 import LITAppConfigPath from '../app_config/LITAppConfigPath';
+import LITNavPath from '../LITNavPath';
 
 export default class LITRootPath extends LITPath{
     constructor(path){
@@ -21,6 +22,7 @@ export default class LITRootPath extends LITPath{
         this.submenu = new LITCommonPath(this.path.concat('submenu'));
         this.intuit = new LITIntuitPath(this.path.concat('intuit'));
         this.appConfig = new LITAppConfigPath(this.path.concat('appConfig'));
+        this.nav = new LITNavPath(this.path.concat('nav'));
         
     }
 }

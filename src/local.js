@@ -1,6 +1,7 @@
 export const KEY_INTUIT_TOKEN_DATA = "KEY_INTUIT_TOKEN_DATA";
 export const KEY_INTUIT_CALLBACK_URI = "KEY_INTUIT_CALLBACK_URI";
 export const KEY_USER_DATA = "KEY_USER_DATA";
+export const KEY_PRJ_DATA = "KEY_PRJ_DATA";
 
 
 class LITLocalStore {

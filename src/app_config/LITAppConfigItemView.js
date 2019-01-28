@@ -125,7 +125,7 @@ const mapStateToProps = (state, ownProps) => {
     let category = ownProps.category;
     let value = appConfigValue?appConfigValue.getIn([category, key]):undefined;
 
-    console.log('value -> ', JSON.stringify(value));
+    // console.log('value -> ', JSON.stringify(value));
     // console.log('loading -> ', loading);
     let active = value?value.get('active'): false;
     let description = value?value.get('description'):undefined;

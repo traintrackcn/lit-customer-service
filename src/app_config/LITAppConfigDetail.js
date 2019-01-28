@@ -1,32 +1,45 @@
-import React, { PureComponent, Component } from 'react';
-import { Modal, ModalFooter, Button, Container, Row, Col } from 'reactstrap';
+import React, { PureComponent } from 'react';
+import { ModalFooter, Button } from 'reactstrap';
 import LITCodeEditor from './LITCodeEditor';
 import mainS from '../css/main.module.css';
 import '../index.css';
 import { isActive, isInternal } from './LITAppConfigDefine';
+import { connect } from 'react-redux';
+import s, {r} from '../store';
+import p from '../rPath';
 
-
-export default class LITAppConfigDetail extends PureComponent{
+class LITAppConfigDetail extends PureComponent{
 
 
     constructor() {
         super();
-        this.onClosed = this.onClosed.bind(this);
-        // this.onEnter = this.onEnter.bind(this);
         this.onCodeChange = this.onCodeChange.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.onBack = this.onBack.bind(this);
         this.state = {};
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
-    resetState(){
-        this.state.newRules = undefined;
-        this.state.changed = undefined;
-    }
 
-    onClosed(){
-        console.log('onClosed() '+JSON.stringify(this.state, null, 2));
-        this.resetState();
-    }
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+      }
+      
+      componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+      }
+
+
+      updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
+      }
+
+    // resetState(){
+    //     this.state.newRules = undefined;
+    //     this.state.changed = undefined;
+    // }
+
 
     onCodeChange({newValue, changed }){
         console.log("onCodeChange");
@@ -36,94 +49,101 @@ export default class LITAppConfigDetail extends PureComponent{
         });
     }
 
+    onBack(){
+        s.dispatch(r.nav.POP());
+    }
+
     async onSave(){
         const key = this.props.theKey;
-        const value = this.props.value;
         const newRules = this.state.newRules;
 
-        console.log(key+' '+JSON.stringify(value, null, 2));
         console.log(key+' newRules -> '+JSON.stringify(newRules, null, 2));
 
-        value.rules = newRules;
+        let category = this.props.category;
+        console.log('key ->', key);
+        s.set(p.appConfig.value.concat([category, key, 'rules']), newRules);
 
-        const state = this.props.state;
-        if (this.props.onSave){
+        this.setState({
+            newRules: undefined, 
+            changed: undefined
+        });
 
-            this.props.onSave(state);
+        await s.dispatch(r.appConfig.put());
 
-            this.setState({
-                newRules: undefined, 
-                changed: undefined
-            });
-
-        }
-
-
-
-
+        
         
     }
 
     render() {
 
-        // console.log('state -> '+JSON.stringify(this.state, null, 2));
+        console.log('LITAppConfigDetail render()');
 
-        const isOpen = this.props.isOpen;
         const key = this.props.theKey;
-        const value = this.props.value;
         const title = key;
-        
-
-        const active = isActive(key, value);
-        
-        const description = value?value.description:'';
-        const rules = value?value.rules:undefined;
+        const active = this.props.active;
+        const description = this.props.description;
+        const rules = this.props.rules;
 
         let stateStyle = active?mainS.active:mainS.inactive;
-        const externalCloseBtn = <button className="close" style={{ position: 'absolute', width: '100%', height: '100%'}} onClick={this.props.onClose}></button>;
-        
-        // console.log('componentS.modal ->', JSON.stringify(componentS.modal, null, 2));
-
+       
         return (
-            <Modal
-                size='xl'
-                isOpen={isOpen} 
-                backdrop  
-                external={externalCloseBtn} 
-                fade={true} 
-                onClosed={this.onClosed}
-                className={'modal-default'}
-                // modalClassName={'modal-default'}
-                // centered
+            <div style={{
+                width: '100%', 
+                // height: containerH,
+                // border: 'solid 3px red'
+            }}
                 >
                 
-                    <div className={["component-detail-container", stateStyle].join(' ')}>
-                
-                        <div  className={['component-detail-title'].join(' ')}>{title}</div> 
-                        <div  className={['component-detail-description'].join(' ')}></div>
-                        {description}
-                    </div>
-                    <div style={{height: 500, width: '100%'}}>
-                    <LITCodeEditor value={rules} onChange={this.onCodeChange}/>
+                    <div className={["nav-bar"].join(' ')}>
+                        <span onClick={this.onBack} className='back-btn'>Back</span>
+                        <span className={[stateStyle, 'app-config-title'].join(' ')}>{title}</span>
                     </div>
                     
-                    
-                        <ModalFooter >
-                        {
-                            this.state.changed  &&
+                    <div style={{height: '500px', width: '100%', padding: 10}}>
 
-                            <Button color="primary" onClick={this.onSave}>Save</Button>
+                    {
+                        this.state.changed  &&
+
+                        <Button color="primary" onClick={this.onSave}>Save</Button>
+                    
+                    }
+
+                    {description}
+                    <LITCodeEditor value={rules} onChange={this.onCodeChange}/>
+                    
+                    </div>
+                    
+                    
                         
-                        }
-                            <Button color="secondary" onClick={this.props.onClose}>Close</Button>
-                        </ModalFooter>
                     
                 
-                </Modal>
+                </div>
         );
     }
 
 }
 
 
+const mapStateToProps = (state, ownProps) => {
+    let appConfigValue = s.get(p.appConfig.value);
+    let key = ownProps.theKey;
+    let category = ownProps.category;
+    let value = appConfigValue?appConfigValue.getIn([category, key]):undefined;
 
+    // console.log('value -> ', JSON.stringify(value));
+    // console.log('loading -> ', loading);
+    let active = isActive(key, value);
+    let description = value?value.get('description'):undefined;
+    let rules = value?value.get('rules'):undefined;
+ 
+    return {
+        // value: value,
+        rules: rules,
+        active: active,
+        description: description,
+    }
+}
+  
+//   const mapDispatchToProps = { increment, decrement, reset }
+  
+export default connect(mapStateToProps)(LITAppConfigDetail)
