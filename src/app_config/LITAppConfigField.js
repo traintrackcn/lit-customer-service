@@ -5,14 +5,34 @@ import { connect } from 'react-redux';
 import { getConfig } from '../project/prj-utils';
 // import LITGETConfig from './LITGETConfig';
 // import LITPUTConfig from './LITPUTConfig';
-import { Row, Container, Spinner, Col } from 'reactstrap';
+import { Spinner } from 'reactstrap';
 import LITAppConfigItemView from './LITAppConfigItemView';
+
+import Modal from 'react-responsive-modal';
+import styles from '../index.module.css';
 
 class LITAppConfigField extends PureComponent {
 
     constructor(){
         super();
         this.onClick = this.onClick.bind(this);
+        this.state = {
+            modal: false
+        };
+        this.onCloseDetail = this.onCloseDetail.bind(this);
+        this.onOpenDetail = this.onOpenDetail.bind(this);
+    }
+
+    onCloseDetail(){
+        this.setState({
+            modal: false
+        });
+    }
+
+    onOpenDetail(){
+        this.setState({
+            modal: true
+        });
     }
 
     async run({prj, platform}) {
@@ -53,13 +73,14 @@ class LITAppConfigField extends PureComponent {
 
 
     onClick(key, value){
-        let category = this.props.category;
-        // console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
-        s.dispatch(r.nav.PUSH({
-            // comp: LITAppConfigDetail,
-            key: key, 
-            category: category
-        }));
+        // let category = this.props.category;
+        // // console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
+        // s.dispatch(r.nav.PUSH({
+        //     // comp: LITAppConfigDetail,
+        //     key: key, 
+        //     category: category
+        // }));
+        this.onOpenDetail();
     }
       
 
@@ -76,9 +97,30 @@ class LITAppConfigField extends PureComponent {
         const keys = value.get(category+'Keys');
         return (
             <div style={{
-                border:'solid 1px', 
+                // border:'solid 1px', 
                 padding: 10}}>
                 {this.cols(keys)}
+
+                <Modal 
+                    open={this.state.modal}
+                    onClose={this.onCloseDetail}
+                    classNames={{
+                        // overlay: styles.customOverlay,
+                        modal: styles.customModal,
+                    }}
+                    >
+                <h2>Simple centered modal</h2>
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
+                
+                 
+                </Modal>
             </div>
         );
     }

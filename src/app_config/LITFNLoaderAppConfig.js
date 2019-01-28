@@ -36,7 +36,7 @@ class LITFNLoaderAppConfig extends PureComponent {
                 }}>
                 <LITAppConfigNavigator />
                 
-                {   category === "CODE" &&
+                {   category === "EXPERT" &&
                     <LITAppConfigAdvField />
                 }
 
