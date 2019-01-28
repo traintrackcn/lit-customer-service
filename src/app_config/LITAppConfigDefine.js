@@ -3,7 +3,7 @@ export const categories = [
     "fn",
     "misc",
     'example',
-    "ADVANCED",
+    "CODE",
 ];
 
 export const platforms = [

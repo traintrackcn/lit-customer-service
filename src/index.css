@@ -89,37 +89,62 @@ code {
   /* border: 1px solid; */
   font-size: 16px;
   font-weight: bold;
-  /* word-break: break-word; */
-  white-space: nowrap;  
-  overflow: hidden;         /*prevent text from being shown outside the border */
-  text-overflow: ellipsis;
+  word-break: break-word;
+  /* white-space: nowrap;   */
+  /* overflow: hidden;         prevent text from being shown outside the border */
+  /* text-overflow: ellipsis; */
+  /* display: inline-block; */
   /* padding-bottom: 3px; */
 }
 
 .app-pref-container {
-  border: 1px solid #4C4C4C;
-  /* border-color: black; */
-  /* background-color: red; */
+  border: 1px solid #999;
+  border-radius: 6px 6px 6px 6px;
   
-  border-radius: 6px 6px 0px 0px;
+  margin-bottom: 8px;
   overflow: hidden;
-  height: 100px;
-  padding: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  /* flex-shrink: unset; */
+}
+
+.app-pref-content {
+  /* border: 2px solid red; */
   cursor: pointer;
-  /* background-color: #FEFBDF; */
-  /* alignItems: 'center', */
-  /* justifyContent: 'center', */
-  /* display: 'flex', */
+  /* margin: 0; */
+  /* padding-top: 5px;
+  padding-bottom: 5px; */
+  padding: 8px;
+  width: 100%;
+  /* padding-left: 0;
+  padding-right: 0; */
 }
 
 
 .app-pref-description {
   border: 0px solid;
   font-size: 14px;
+  /* display: inline-block; */
   /* padding-top: 3px; */
   /* overflow: hidden;
   height: 65px; */
   /* -webkit-overflow-scrolling: touch; */
+}
+
+.app-pref-control {
+  /* display: inline-block; */
+  /* border: 2px solid red; */
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: flex-end; */
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-left: solid 1px #999;
+  /* width: 50px; */
+  width: 100px;
+  flex-shrink: 0;
 }

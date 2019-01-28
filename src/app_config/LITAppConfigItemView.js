@@ -66,54 +66,52 @@ class LITAppConfigItemView extends PureComponent {
 
         
         return (
-            <Col 
-                xs="6" sm="3"
-                    style={{
-                    border:'3px solid #FFF',
-                    backgroundColor: 'white',
-                }}>
-                    
-                    <div className={['app-pref-container', stateStyle, mainS.disableTextSelection].join(' ')} onClick={this.onClick}>
-                        <div className={['app-pref-title'].join(' ')}>
-                            {title}
-                        </div>
-                        <p className={'app-pref-description'}>
-                            {description}
-                        </p>
-                    </div>
+            
+            <div className={['app-pref-container', stateStyle, mainS.disableTextSelection].join(' ')}>
+                
 
-                    <div style={{
-                            border: '1px solid #4C4C4C',
-                            borderTopWidth: 0,
-                            borderRadius: '0px 0px 4px 4px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            height: 45,
+                <div 
+                    xs='9' 
+                    // xs='auto'
+                    onClick={this.onClick} className={['app-pref-content'].join(' ')}>
+                    <div  className={['app-pref-title'].join(' ')}>
+                        {title}
+                    </div>
+                    
+                    <div className={'app-pref-description'}>
+                        {description}
+                    </div>
+                </div>
+                
+
+
+                <div className={'app-pref-control'}>
+                {
+                    !internal &&    
+                    <Switch
+                        style={{
+                            // border: 'solid 1px',
+                            // marginRight: 6,
                         }}
-                        // onClick={this.onClickSwitchContainer}
-                        >
-                    {
-                        !internal &&    
-                        <Switch
-                            style={{
-                                marginRight: 10,
-                            }}
-                            checked={active}
-                            onChange={this.onSwitch}
-                            // onClick={this.onSwitch}
-                        />
-                    }
+                        checked={active}
+                        onChange={this.onSwitch}
+                    />
+                }
 
 
-                    {
-                        internal &&    
-                        <div style={{marginRight: 10, color: '#999', }}>Internal</div>
-                    }
-                    
-                    </div>
+                {
+                    internal &&    
+                    <div style={{
+                        // marginRight: 6, 
+                        fontWeight: 'bold',
+                        fontSize: 13,
+                        color: '#999', }}>Internal</div>
+                }
+                </div>
 
-                </Col>
+
+            </div>
+
         );
     }
 }
@@ -122,7 +120,7 @@ class LITAppConfigItemView extends PureComponent {
 const mapStateToProps = (state, ownProps) => {
     let appConfigValue = s.get(p.appConfig.value);
     let key = ownProps.theKey;
-    let category = ownProps.category;
+    let category = s.get(p.appConfig.category);
     let value = appConfigValue?appConfigValue.getIn([category, key]):undefined;
 
     // console.log('value -> ', JSON.stringify(value));
@@ -134,6 +132,7 @@ const mapStateToProps = (state, ownProps) => {
         // value: value,
         active: active,
         description: description,
+        category: category
     }
 }
   

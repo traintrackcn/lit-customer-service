@@ -7,7 +7,6 @@ import { getConfig } from '../project/prj-utils';
 // import LITPUTConfig from './LITPUTConfig';
 import { Row, Container, Spinner, Col } from 'reactstrap';
 import LITAppConfigItemView from './LITAppConfigItemView';
-import LITAppConfigDetail from './LITAppConfigDetail';
 
 class LITAppConfigField extends PureComponent {
 
@@ -76,36 +75,16 @@ class LITAppConfigField extends PureComponent {
         // const collection = value.get(category);
         const keys = value.get(category+'Keys');
         return (
-            <Container fluid style={{
-                // border:'solid 1px', 
+            <div style={{
+                border:'solid 1px', 
                 padding: 10}}>
-            <Row noGutters style={{
-                // border: '5px solid #999'
-            }}>
-                {this.cols(keys, category)}
-
-                {/* {
-                    this.state.value &&
-                    <LITAppConfigDetail 
-                        state={this.state.state}
-                        value={this.state.value}
-                        theKey={this.state.key}
-                        isOpen={this.state.openDetail}
-                        onClose={this.onCloseDetail}
-                        onSave={this.onSave}
-                    />
-                } */}
-                
-                
-            </Row>
-
-            
-            </Container>
+                {this.cols(keys)}
+            </div>
         );
     }
 
 
-    cols(keys, category) {
+    cols(keys) {
         let cols = [];
         keys.map((key, index) => {
             // console.log('key -> '+key);
@@ -113,9 +92,7 @@ class LITAppConfigField extends PureComponent {
             cols.push(  
                 <LITAppConfigItemView
                     key={key} 
-                    theKey={key}  
-                    category={category}
-                    // value={value} 
+                    theKey={key}
                     onClick={this.onClick}
                 />
             );

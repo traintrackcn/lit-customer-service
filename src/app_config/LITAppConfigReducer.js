@@ -6,6 +6,13 @@ import LITPUTConfig from './LITPUTConfig';
 
 export default class LITAppConfigReducer extends LITReducer{
 
+    constructor(){
+        super();
+
+        this.platform = undefined;
+        this.code = undefined;
+    }
+
     put(){
         return async (dispatch) => {
 
