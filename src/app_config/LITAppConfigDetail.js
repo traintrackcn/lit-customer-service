@@ -1,11 +1,12 @@
-import React, { PureComponent } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Container, Row, Col } from 'reactstrap';
-import LITCodeEditor from '../LITCodeEditor';
-import componentS from './component.module.css';
-import mainS from '../../css/main.module.css';
-import '../../index.css';
-import { isActive } from '../LITAppConfigDefine';
-export default class LITComponentDetail extends PureComponent{
+import React, { PureComponent, Component } from 'react';
+import { Modal, ModalFooter, Button, Container, Row, Col } from 'reactstrap';
+import LITCodeEditor from './LITCodeEditor';
+import mainS from '../css/main.module.css';
+import '../index.css';
+import { isActive, isInternal } from './LITAppConfigDefine';
+
+
+export default class LITAppConfigDetail extends PureComponent{
 
 
     constructor() {
@@ -81,7 +82,7 @@ export default class LITComponentDetail extends PureComponent{
         let stateStyle = active?mainS.active:mainS.inactive;
         const externalCloseBtn = <button className="close" style={{ position: 'absolute', width: '100%', height: '100%'}} onClick={this.props.onClose}></button>;
         
-        console.log('componentS.modal ->', JSON.stringify(componentS.modal, null, 2));
+        // console.log('componentS.modal ->', JSON.stringify(componentS.modal, null, 2));
 
         return (
             <Modal

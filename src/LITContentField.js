@@ -6,9 +6,9 @@ import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu, MENU_APP_PREFE
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
 import LITBillingField from './billing/LITBillingField';
-import contentS from './css/content.module.css';
-import LITAppConfigFNLoader from './app_config/LITAppConfigFNLoader';
+import LITFNLoaderAppConfig from './app_config/LITFNLoaderAppConfig';
 // import { Switch, Route } from 'react-router-dom'
+import './index.css';
 
 class LITContentField extends PureComponent {
 
@@ -27,7 +27,7 @@ class LITContentField extends PureComponent {
 
 
         return (
-            <div className={[contentS.main].join(' ')}>
+            <div className={['content-field'].join(' ')}>
 
             
 
@@ -53,7 +53,7 @@ class LITContentField extends PureComponent {
                 {
                     value === MENU_APP_PREFERENCES  &&
                     // <LITAppConfigField />
-                    <LITAppConfigFNLoader />
+                    <LITFNLoaderAppConfig />
                 }
 
             </div>

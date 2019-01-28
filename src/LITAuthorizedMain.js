@@ -6,7 +6,6 @@ import LITProjectField from './project/LITProjectField';
 import LITMenuField from './menu/LITMenuField';
 import LITContentField from './LITContentField';
 import logo from './images/logo.png'; // Tell Webpack this JS file uses this image
-import LITSubMenuField from './menu/LITSubMenuField';
 import LITUserInfoField from './user/LITUserInfoField';
 
 
@@ -80,10 +79,6 @@ export default class LITAuthorizedMain extends PureComponent {
                 <Col>
                 <LITUserInfoField />
                 </Col>
-                </Row>
-
-                <Row noGutters>
-                    <LITSubMenuField />                 
                 </Row>
                 
 

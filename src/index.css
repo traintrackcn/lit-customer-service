@@ -14,12 +14,25 @@ code {
 }
 
 
-.modal-xl {
-  max-width: 1140px;
+.content-field{
+  padding: 0; 
+  width: 100%; 
+  /* padding-top: 6px;
+  padding-left: 6px;
+  padding-right: 6px; */
 }
 
+/* .modal-xl {
+  max-width: 100%;
+  width: 100%;
+} */
+
+/* .modal-dialog {
+  width: 100%;
+} */
+
 .modal-default {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   border: 5px solid red;
 }
 
@@ -34,9 +47,69 @@ code {
 }
 
 .component-detail-container {
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
     padding: 10px;
     border-radius: 3px 3px 0px 0px;
     overflow: hidden;
+}
+
+
+.sub-menu-container {
+  /* display: inline-block; */
+  padding-top: 6px;
+  /* padding-left: 6px; */
+  padding-left: 15px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #999999;
+  /* border: solid 1px; */
+  width: 100%;
+  /* overflow: auto; */
+}
+
+
+.platform-dropdown {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
+
+.app-pref-title {
+  /* border: 1px solid; */
+  font-size: 16px;
+  font-weight: bold;
+  /* word-break: break-word; */
+  white-space: nowrap;  
+  overflow: hidden;         /*prevent text from being shown outside the border */
+  text-overflow: ellipsis;
+  /* padding-bottom: 3px; */
+}
+
+.app-pref-container {
+  border: 1px solid #4C4C4C;
+  /* border-color: black; */
+  /* background-color: red; */
+  
+  border-radius: 6px 6px 0px 0px;
+  overflow: hidden;
+  height: 100px;
+  padding: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  /* background-color: #FEFBDF; */
+  /* alignItems: 'center', */
+  /* justifyContent: 'center', */
+  /* display: 'flex', */
+}
+
+
+.app-pref-description {
+  border: 0px solid;
+  font-size: 14px;
+  /* padding-top: 3px; */
+  /* overflow: hidden;
+  height: 65px; */
+  /* -webkit-overflow-scrolling: touch; */
 }

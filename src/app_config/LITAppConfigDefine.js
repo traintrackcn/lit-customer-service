@@ -6,7 +6,12 @@ export const categories = [
     "ADVANCED",
 ];
 
-export const platform = 'rn';
+export const platforms = [
+    'rn',
+    'ios',
+    'backup'
+];
+
 
 export const lit = {
     // id: 'VBNAlRZBYCIVexyYqJ1Dte',
