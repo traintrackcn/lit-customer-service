@@ -64,8 +64,6 @@ export default class LITAppConfigExpert extends LITPureComponent {
 
     async onSave(){
         const newValue = this.state.newValue;
-        console.log('newValue -> '+JSON.stringify(newValue, null, 2));
-
         let category = this.props.category;
         s.set(p.appConfig.value.concat([category]), fromJS(newValue));
 
@@ -86,8 +84,6 @@ export default class LITAppConfigExpert extends LITPureComponent {
         let value = this.state.value;
         let category = this.props.category;
         let platform = s.get(p.appConfig.platform);
-        // console.log('render() this.state ->'+JSON.stringify(this.state, null, 2));
-        // console.log('render() value ->'+value);
 
         if (!value) return null;
         const changed = this.state.changed;

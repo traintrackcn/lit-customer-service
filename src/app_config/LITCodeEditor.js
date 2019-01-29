@@ -16,7 +16,6 @@ export default class LITJSONField extends PureComponent{
     }
 
     onChange(newValue){
-        // console.log('newValue -> '+newValue);
         this.newValue = newValue;
     }
 

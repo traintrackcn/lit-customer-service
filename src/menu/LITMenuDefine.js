@@ -9,6 +9,7 @@ export let menuTitles = ["Billing", "App Preferences"];
 export let menuKeys = [MENU_BILLING, MENU_APP_PREFERENCES];
 export const currentMenu = (current) => {
     // if (!current) return MENU_DASHBOARD;
-    if (!current) return MENU_APP_PREFERENCES;
+    // if (!current) return MENU_APP_PREFERENCES;
+    if (!current) return MENU_BILLING;
     return current;
 }

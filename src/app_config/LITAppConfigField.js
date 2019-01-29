@@ -40,7 +40,7 @@ class LITAppConfigField extends LITPureComponent {
 
 
     onClick(key, value){
-        console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
+        
         this.configUnitKey = key;
         this.configUnitValue = value;
         
@@ -67,7 +67,7 @@ class LITAppConfigField extends LITPureComponent {
 
         const keys = this.keys(collection);
 
-        console.log('keys -> ', JSON.stringify(keys, null, 2));
+        // console.log('keys -> ', JSON.stringify(keys, null, 2));
 
         return (
             <div style={{
@@ -108,7 +108,6 @@ class LITAppConfigField extends LITPureComponent {
     cols(keys, collection) {
         let cols = [];
         keys.map((key, index) => {
-            // console.log('key -> '+key);
             const value = collection.get(key);
             cols.push(  
                 <LITAppConfigItemView
@@ -131,9 +130,6 @@ class LITAppConfigField extends LITPureComponent {
 const mapStateToProps = (state /*, ownProps*/) => {
     let loading = s.get(p.appConfig.loading);
     let value = s.get(p.appConfig.value);
-
-    console.log('config value ->', JSON.stringify(value, null, 2));
-    // console.log('loading -> ', loading);
 
     return {
         category: s.get(p.appConfig.category),

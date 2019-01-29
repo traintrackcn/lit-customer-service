@@ -40,10 +40,7 @@ export default class LITAppConfigUnit extends LITPureComponent{
     async onSave(){
         const key = this.props.theKey;
         const newValue = this.state.newValue;
-
         let category = this.props.category;
-        console.log('key ->', key);
-        console.log('newValue ->', JSON.stringify(newValue, null, 2));
 
         s.set(p.appConfig.value.concat([category, key ]), fromJS(newValue));
 

@@ -56,7 +56,6 @@ export default class LITAppConfigItemView extends LITPureComponent {
 
         // const value = this.props.value;
         const key = this.props.theKey;
-        console.log('key -> ', key);
         let title = key;
         let active = this.active;
         let description = this.description;

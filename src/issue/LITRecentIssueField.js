@@ -101,8 +101,6 @@ class LITRecentIssueField extends PureComponent {
 
         let arr = [];
         collection.map((value, key) => {
-            // console.log('key -> '+key);
-            // console.log('value -> '+value)
             let subject = value.get('subject');
             let id = value.get('id');
             // const value = collection[key];

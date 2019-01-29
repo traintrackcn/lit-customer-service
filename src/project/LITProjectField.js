@@ -77,8 +77,6 @@ class LITProjectField extends PureComponent {
 
         let arr = [];
         collection.map((value, key) => {
-            // console.log('key -> '+key);
-            // console.log('value -> '+value)
             let title = value.get('name');
             // const value = collection[key];
             arr.push(  

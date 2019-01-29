@@ -49,7 +49,7 @@ class LITAppConfigNavigator extends PureComponent {
 
         let pPlatform = p.appConfig.platform;
         if (platforms && !s.get(pPlatform)){
-            s.set(pPlatform, platforms[1]); //will trigger 1 more rendering
+            s.set(pPlatform, platforms[0]); //will trigger 1 more rendering
             console.log('LITAppConfigMenu changed state while rendering');
         }
     }
