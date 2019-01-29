@@ -2,30 +2,13 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
-import LITAppConfigAdvField from './LITAppConfigAdvField';
-import LITAppConfigField from './LITAppConfigField';
 import LITAppConfigNavigator from './LITAppConfigNavigator';
-import LITAppConfigDetail from './LITAppConfigDetail';
+import LITAppConfigField from './LITAppConfigField';
+// import LITProcessing from '../LITProccesing';
 
 class LITFNLoaderAppConfig extends PureComponent {
 
     render(){
-
-        let category = this.props.category;
-        let nav = this.props.nav;
-
-        if (nav){
-
-            console.log('nav -> ', JSON.stringify(nav));
-            return (
-                <div>
-                    <LITAppConfigDetail 
-                        theKey={nav.get('key')}
-                        category={nav.get('category')}
-                    />
-                </div>
-            );
-        }
 
         // console.log('category -> ', category);
         return (
@@ -35,15 +18,7 @@ class LITFNLoaderAppConfig extends PureComponent {
                 // border: '1px solid'
                 }}>
                 <LITAppConfigNavigator />
-                
-                {   category === "EXPERT" &&
-                    <LITAppConfigAdvField />
-                }
-
-                {
-                    category !== "EXPERT" &&
-                    <LITAppConfigField />
-                }
+                <LITAppConfigField />
                 
             </div>
         )
@@ -55,12 +30,8 @@ class LITFNLoaderAppConfig extends PureComponent {
 
 
 const mapStateToProps = (state /*, ownProps*/) => {
-
-    let nav = s.get(p.nav.current);
-
     return {
-        nav:  nav, 
-        category: s.get(p.appConfig.category)
+        // prj: s.get(p.prj.value)
     }
 }
   

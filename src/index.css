@@ -37,13 +37,26 @@ code {
 }
 
 .app-config-title {
-  /* font-size: 18px; */
+  font-size: 18px;
   font-weight: bold;
-  font-size: 14px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  /* font-size: 14px; */
 }
 
 .bg-normal {
   background-color: #F7F8F9;
+}
+
+.app-config-unit-bar {
+    width: 100%;
+    height: 2rem;
+    /* padding: 10px; */
+    /* border-radius: 3px 3px 0px 0px; */
+    /* overflow: hidden; */
+    border-bottom: 1px solid #999999;
+    margin-bottom: 5px;
 }
 
 .nav-bar {
@@ -161,4 +174,19 @@ code {
 .processing {
   width: 5vh;
   height: 5vh;
+}
+
+
+
+.expert-btn {
+  margin-top: 0px;
+  margin-right: 4px;
+  padding-left: 4px; padding-right: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  /* display: inline-block; */
+  color: #007BFF;
+  cursor: pointer;
+  
 }

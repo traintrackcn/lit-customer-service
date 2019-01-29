@@ -1,15 +1,13 @@
-import React, { PureComponent, Component } from 'react';
+import React from 'react';
+import LITPureComponent from '../LITPureComponent';
 import s, {r} from '../store';
 import p from '../rPath';
-import { connect } from 'react-redux';
-import { Row, Container, Spinner, Col } from 'reactstrap';
-import LITAppConfigDetail from './LITAppConfigDetail';
 import Switch from 'react-ios-switch';
 import mainS from '../css/main.module.css';
 import '../index.css';
 import { isInternal } from './LITAppConfigDefine';
 
-class LITAppConfigItemView extends PureComponent {
+export default class LITAppConfigItemView extends LITPureComponent {
 
 
     constructor(props) {
@@ -19,7 +17,11 @@ class LITAppConfigItemView extends PureComponent {
         this.onSwitch = this.onSwitch.bind(this);
     }
 
-
+    onReceiveProps(props){
+        let value = props.value;
+        this.active = value?value.get('active'): false;
+        this.description = value.get('description');
+    }
 
    
     onClick(){
@@ -28,36 +30,36 @@ class LITAppConfigItemView extends PureComponent {
         if (this.props.onClick) this.props.onClick(key, value);
     }
 
-  
-
     async onSwitch(){
-
-        console.log('onSwitch()');
-        const key = this.props.theKey;
         let category = this.props.category;
-        // const state = this.props.state;
-        console.log('key ->', key);
+        if (!category){
+            throw({ code: 'ErrorInvalidCategory'});
+        }
 
-        // if (this.props.onSwitch){
-        //     this.props.onSwitch(key);
-        // }        
-        // let active = !this.props.active;
-        // let value = this.props.value;
-        // value.setIn(['active'], !this.props.active);
-        s.set(p.appConfig.value.concat([category, key, 'active']), !this.props.active);
+        let current = this.active;
 
-        await s.dispatch(r.appConfig.put());
+        console.log('onSwitch() to ->', !current);
+        const key = this.props.theKey;
+
+        // console.log('before state ->', JSON.stringify(s.get(p.appConfig.value), null, 2));
+        
+        s.set(p.appConfig.value.concat([category, key, 'active']), !current);
+        
+        s.dispatch(r.appConfig.put());
+        // console.log('state ->', JSON.stringify(s.get(p.appConfig.value), null, 2));
     }
 
 
     render() {
 
+        console.log('render()');
+
         // const value = this.props.value;
         const key = this.props.theKey;
         console.log('key -> ', key);
         let title = key;
-        const description = this.props.description;
-        let active = this.props.active;
+        let active = this.active;
+        let description = this.description;
         let internal = isInternal(key);
         if (internal) active = true;
         let stateStyle = active?mainS.active:mainS.inactive;
@@ -115,27 +117,3 @@ class LITAppConfigItemView extends PureComponent {
         );
     }
 }
-
-
-const mapStateToProps = (state, ownProps) => {
-    let appConfigValue = s.get(p.appConfig.value);
-    let key = ownProps.theKey;
-    let category = s.get(p.appConfig.category);
-    let value = appConfigValue?appConfigValue.getIn([category, key]):undefined;
-
-    // console.log('value -> ', JSON.stringify(value));
-    // console.log('loading -> ', loading);
-    let active = value?value.get('active'): false;
-    let description = value?value.get('description'):undefined;
- 
-    return {
-        // value: value,
-        active: active,
-        description: description,
-        category: category
-    }
-}
-  
-//   const mapDispatchToProps = { increment, decrement, reset }
-  
-export default connect(mapStateToProps)(LITAppConfigItemView)

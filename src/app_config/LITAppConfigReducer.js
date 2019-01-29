@@ -24,8 +24,8 @@ export default class LITAppConfigReducer extends LITReducer{
 
             try{
 
-                console.log("r -> "+r);
-                console.log("s -> "+s);
+                // console.log("r -> "+r);
+                // console.log("s -> "+s);
 
                 let company = prj_getConfig(prj, 'code');
 
@@ -50,7 +50,7 @@ export default class LITAppConfigReducer extends LITReducer{
                     platform: this.platform
                 });
                 
-                console.log('state -> ', JSON.stringify(state, null, 2));
+                // console.log('state -> ', JSON.stringify(state, null, 2));
 
                 dispatch(this.SET(['value'], fromJS(state)));
                 dispatch(this.DELETE(['loading']));
@@ -74,15 +74,11 @@ export default class LITAppConfigReducer extends LITReducer{
             const s = this.s;
 
             try{
-
-                console.log("r -> "+r);
-                console.log("s -> "+s);
-
-                let value = s.get(p.appConfig.value).toJS();
-                console.log('value ->', JSON.stringify(value, null, 2));
-
+                let prj = s.get(p.prj.value);
                 let platform = s.get(p.appConfig.platform);
-                let company = s.get(p.appConfig.company);
+                let company = prj_getConfig(prj, 'code');
+                let value = s.get(p.appConfig.value).toJS();
+
                 await LITPUTConfig({company, platform, value});
                 
                 // this.SET('value', fromJS(state));

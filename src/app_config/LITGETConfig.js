@@ -22,23 +22,23 @@ export default ({company, platform}) => {
         try {   
             const r = await LITFetch({info});
 
-            console.log('r ->', r);
+            // console.log('r ->', r);
 
-            categories.forEach((category)=>{
-                const rCollection = r[category];
-                const nameOfKeys = category+'Keys';
-                let keys = [];
+            // categories.forEach((category)=>{
+            //     const rCollection = r[category];
+            //     const nameOfKeys = category+'Keys';
+            //     let keys = [];
 
-                for (const key in rCollection) {
-                    keys.push(key);
-                }
+            //     for (const key in rCollection) {
+            //         keys.push(key);
+            //     }
             
-                keys.sort();
+            //     keys.sort();
             
-                r[nameOfKeys] = keys;
+            //     r[nameOfKeys] = keys;
 
-                console.log('nameOfKeys -> '+nameOfKeys+' keys -> '+JSON.stringify(keys));
-            });
+            //     console.log('nameOfKeys -> '+nameOfKeys+' keys -> '+JSON.stringify(keys));
+            // });
 
 
 

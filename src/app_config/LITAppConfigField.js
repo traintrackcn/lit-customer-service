@@ -1,4 +1,5 @@
-import React, { PureComponent, Component } from 'react';
+import React from 'react';
+import LITPureComponent from '../LITPureComponent';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
@@ -10,17 +11,20 @@ import LITAppConfigItemView from './LITAppConfigItemView';
 
 import Modal from 'react-responsive-modal';
 import styles from '../index.module.css';
+import LITAppConfigExpert from './LITAppConfigExpert';
+import { fromJS } from 'immutable';
+import LITAppConfigUnit from './LITAppConfigUnit';
 
-class LITAppConfigField extends PureComponent {
+class LITAppConfigField extends LITPureComponent {
 
     constructor(){
         super();
-        this.onClick = this.onClick.bind(this);
+        
         this.state = {
             modal: false
         };
         this.onCloseDetail = this.onCloseDetail.bind(this);
-        this.onOpenDetail = this.onOpenDetail.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     onCloseDetail(){
@@ -29,62 +33,50 @@ class LITAppConfigField extends PureComponent {
         });
     }
 
-    onOpenDetail(){
-        this.setState({
-            modal: true
-        });
-    }
-
-    async run({prj, platform}) {
-        console.log('LITAppConfigField run() prj ->',prj.get('id'), 'platform ->', platform);
+    async onReceiveProps({prj, platform}) {
+        console.log('onReceiveProps() prj ->',prj.get('id'), 'platform ->', platform);
         await s.dispatch(r.appConfig.get({prj, platform}));
-    }
-
-    async componentWillMount(){
-        console.log('LITAppConfigField componentWillMount()');
-        this.run({
-            prj: this.props.prj,
-            platform: this.props.platform,
-        });
-    }
-
-    async componentWillReceiveProps(nextProps){
-        console.log('LITAppConfigField componentWillReceiveProps()');
-        this.run({
-            prj: nextProps.prj,
-            platform: nextProps.platform,
-        });
     }
 
 
     onClick(key, value){
-        // let category = this.props.category;
-        // // console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
-        // s.dispatch(r.nav.PUSH({
-        //     // comp: LITAppConfigDetail,
-        //     key: key, 
-        //     category: category
-        // }));
-        this.onOpenDetail();
+        console.log('key ->', key, 'value ->', JSON.stringify(value, null, 2));
+        this.configUnitKey = key;
+        this.configUnitValue = value;
+        
+        this.setState({
+            modal: true
+        });
     }
       
 
     render() {
-        console.log('LITAppConfigField render()');
+        
 
         const loading = this.props.loading;
-        let value = s.get(p.appConfig.value);
+        let value = this.props.value;
+
+        console.log('render()');
         
         if (loading) return (<LITProcessing />);
         if (!value) return null;
         let category = this.props.category;
-        // const collection = value.get(category);
-        const keys = value.get(category+'Keys');
+        let collection = value.get(category);
+
+        if (!collection) collection = fromJS({});
+
+        const keys = this.keys(collection);
+
+        console.log('keys -> ', JSON.stringify(keys, null, 2));
+
         return (
             <div style={{
                 // border:'solid 1px', 
-                padding: 10}}>
-                {this.cols(keys)}
+                padding: 10, paddingTop: 0}}>
+
+                <LITAppConfigExpert category={category} value={collection} />
+
+                {this.cols(keys, collection)}
 
                 <Modal 
                     open={this.state.modal}
@@ -94,33 +86,37 @@ class LITAppConfigField extends PureComponent {
                         modal: styles.customModal,
                     }}
                     >
-                <h2>Simple modal</h2>
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
-                
-                 
+                    <LITAppConfigUnit 
+                        theKey={this.configUnitKey}
+                        value={this.configUnitValue}
+                        category={category}
+                    />
                 </Modal>
             </div>
         );
     }
 
 
-    cols(keys) {
+    keys(collection) {
+        let arr = [];
+        collection.map((value, index) => {
+            arr.push(index);
+        });
+        return arr.sort();
+    }
+
+    cols(keys, collection) {
         let cols = [];
         keys.map((key, index) => {
             // console.log('key -> '+key);
-            // const value = collection.get(key);
+            const value = collection.get(key);
             cols.push(  
                 <LITAppConfigItemView
                     key={key} 
                     theKey={key}
                     onClick={this.onClick}
+                    value={value}
+                    category={this.props.category}
                 />
             );
         });
@@ -134,12 +130,16 @@ class LITAppConfigField extends PureComponent {
 
 const mapStateToProps = (state /*, ownProps*/) => {
     let loading = s.get(p.appConfig.loading);
-    console.log('loading -> ', loading);
+    let value = s.get(p.appConfig.value);
+
+    console.log('config value ->', JSON.stringify(value, null, 2));
+    // console.log('loading -> ', loading);
 
     return {
         category: s.get(p.appConfig.category),
         platform: s.get(p.appConfig.platform),
         prj: s.get(p.prj.value),
+        value: value,
         loading: loading,
     }
 }

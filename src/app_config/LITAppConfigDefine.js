@@ -2,8 +2,7 @@ export const categories = [
     "f", 
     "fn",
     "misc",
-    'example',
-    "EXPERT",
+    'example'
 ];
 
 export const platforms = [
