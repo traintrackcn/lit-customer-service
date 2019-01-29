@@ -114,7 +114,7 @@ export default class LITAppConfigExpert extends LITPureComponent {
                         // display: 'inline-block',
                     }}>
                     
-                    <span style={{fontWeight: 'bold', color: '#5C3C00'}}>
+                    <span style={{fontWeight: 'bold', color: '#5C3C00', marginRight: 10}}>
                     {category}@{platform}
                     </span>
                     
@@ -126,7 +126,7 @@ export default class LITAppConfigExpert extends LITPureComponent {
                     }
                     
                 </div>
-                <div style={{padding: 0, height: '80vh'}}>
+                <div style={{padding: 0, height: '70vh'}}>
                 <LITCodeEditor value={value} onChange={this.onCodeChange}/>
                 </div>
 
