@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { MENU_DASHBOARD, MENU_INVOICE, MENU_BILLING, currentMenu, MENU_APP_PREFERENCES } from './menu/LITMenuDefine';
 import LITDashboardField from './dashboard/LITDashboardField';
 import LITInvoiceField from './invoice/LITInvoiceField';
-import LITBillingField from './billing/LITBillingField';
+import LITFNLoaderBilling from './billing/LITFNLoaderBilling';
 import LITFNLoaderAppConfig from './app_config/LITFNLoaderAppConfig';
 // import { Switch, Route } from 'react-router-dom'
 import './index.css';
@@ -47,7 +47,7 @@ class LITContentField extends PureComponent {
 
                 {
                     value === MENU_BILLING &&
-                    <LITBillingField />
+                    <LITFNLoaderBilling />
                 }
 
                 {

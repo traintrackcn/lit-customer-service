@@ -37,7 +37,7 @@ export default class LITProjectReducer extends LITReducer{
 
                 if(collection.size > 0){
                   let defaultIdx = 0;
-                  defaultIdx = 3;
+                  defaultIdx = 4;
                   s.set(p.prj.index, defaultIdx);
                   s.set(p.prj.value, collection.get(defaultIdx));
                 }

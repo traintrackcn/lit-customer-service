@@ -1,71 +1,61 @@
-import React, { PureComponent } from 'react';
-import menuS from '../css/menu.module.css';
+import React from 'react';
+import LITPureComponent from '../LITPureComponent';
 import { connect } from 'react-redux';
 import s from '../store';
 import p from '../rPath';
-import { getPlans } from '../project/prj-utils';
-import LITBillingMenuItemView from './LITBillingMenuItemView';
+import { prj_getPlans } from '../project/prj-utils';
+import LITPlanDropdown from './LITPeriodDropdown';
+import '../index.css';
+import { BILLING_STATUSES, BILLING_PERIODS } from './LITBillingDefine'
+import menuS from '../css/menu.module.css';
 
-class LITBillingMenu extends PureComponent {
+class LITBillingMenu extends LITPureComponent {
 
-    componentWillMount(){
-        console.log('LITBillingMenu componentWillMount()', this.props.prj);
-    }
 
-    // componentDidMount(){
-    //     console.log('LITBillingMenu componentDidMount()', this.props.prj);
-    // }
-
-    componentWillReceiveProps(nextProps){
-        // super.componentDidCatch();
-        console.log('LITBillingMenu componentWillReceiveProps()', nextProps);
-
-        let prj = nextProps.prj;
+    onReceiveProps({prj, period}){
         if (!prj) return;
-        let plans = getPlans(prj);
-        if (plans.length && !s.get(p.submenu.value)){
-            s.set(p.submenu.value, plans[0]); //will trigger 1 more rendering
+        // let plans = prj_getPlans(prj);
+        if (!period){
+            s.set(p.billing.period, BILLING_PERIODS[0]); //will trigger 1 more rendering
             console.log('LITBillingMenu changed state while rendering');
         }
     }
 
-    componentWillUnmount(){
-        console.log('LITBillingMenu componentWillUnmount()', this.props.prj);
-    }
-
     render() {
 
-        console.log('LITBillingMenu render()', this.props.prj);
+        console.log('render()', this.props.prj);
 
         let prj = this.props.prj;
 
         if (!prj) return null;
 
         return (
-            <div className={[menuS.subContainer].join(' ')}>
+            <div  className={['sub-menu-container'].join(' ')}>
+                <LITPlanDropdown prj={prj} value={this.props.period} />
 
-            {
-                this.items()
-            }
-
-        </div>
+                {
+                    this.items()
+                }
+            </div>
         )
     }
 
-    items() {
-        let prj = this.props.prj;
-        let plans = getPlans(prj);
-        let arr = [];
-        let submenu = s.get(p.submenu.value);
+    onClickMenuItem(value){
+        s.set(p.billing.status, value);
+    }
 
-        console.log('plans -> '+plans);
-        plans.forEach(plan => {
+
+    items() {
+        // let prj = this.props.prj;
+        var arr = [];
+        BILLING_STATUSES.forEach(value => {
             arr.push(
-            <LITBillingMenuItemView 
-                key={plan}
-                active={(submenu===plan)}
-                title={plan}
-                value={plan}
+            <ItemView 
+                key={value}
+                active={value===this.props.status}
+                title={value}
+                value={value}
+                onClick={this.onClickMenuItem}
             />
             );
         });
@@ -74,16 +64,54 @@ class LITBillingMenu extends PureComponent {
         return arr;
     }
 
+
 }
 
 
-const mapStateToProps = (state /*, ownProps*/) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         prj: s.get(p.prj.value),
-        submenu: s.get(p.submenu.value),
+        period: s.get(p.billing.period),
+        status: s.get(p.billing.status)
     }
 }
   
 //   const mapDispatchToProps = { increment, decrement, reset }
   
 export default connect(mapStateToProps)(LITBillingMenu)
+
+
+class ItemView extends LITPureComponent {
+
+    constructor() {
+        super();
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        let value = this.props.value;
+        
+        if (this.props.onClick){
+            this.props.onClick(value);
+        }
+    }
+
+    render() {
+
+        let active = this.props.active;
+        let title = this.props.title;
+        var style = [menuS.sub, menuS.normal].join(' ');
+
+        if (active){
+            style = [menuS.sub, menuS.selected].join(' ');
+        }
+        // title = title.replace(/Development -/i, 'Dev -');
+
+        return (
+            <span className={style} onClick={this.onClick}>
+                {title}
+            </span> 
+                
+        );
+    }
+}
