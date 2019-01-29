@@ -149,3 +149,16 @@ code {
   flex-shrink: 0;
 }
 
+.proccesing-container {
+  width: 100%;
+  border: solid 1px;
+  display: flex;
+  height: 30vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.processing {
+  width: 5vh;
+  height: 5vh;
+}

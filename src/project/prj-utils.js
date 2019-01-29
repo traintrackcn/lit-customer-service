@@ -1,4 +1,4 @@
-export const getPlans = (prj) => {
+export const prj_getPlans = (prj) => {
     const description = prj.get('description');
     const tag = 'plan';
     const content = getContentBetweenTag(description, tag);
@@ -10,7 +10,7 @@ export const getPlans = (prj) => {
     return [];
 }
 
-export const getConfig = (prj, key) => {
+export const prj_getConfig = (prj, key) => {
     const description = prj.get('description');
     const tag = 'config';
     const content = getContentBetweenTag(description, tag);

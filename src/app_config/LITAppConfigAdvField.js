@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import s, {r} from '../store';
 import p from '../rPath';
 import { connect } from 'react-redux';
-import { getConfig } from '../project/prj-utils';
+import { prj_getConfig } from '../project/prj-utils';
 import { Spinner, Button } from 'reactstrap';
 import LITCodeEditor from './LITCodeEditor';
 import { fromJS } from 'immutable';
@@ -20,23 +20,9 @@ class LITAppConfigAdvField extends PureComponent {
 
     async run({prj, platform}) {
         
-        if (!prj) return;
+        console.log('LITAppConfigAdvField run() prj ->',prj.get('id'), 'platform ->', platform);
 
-        console.log('LITAppConfigAdvField run() prj ->',prj.get('id'));
-
-        if (prj === this.prj 
-            && platform === this.platform) return;
-
-        this.prj = prj;
-        this.platform = platform;
-
-        let companyCode = getConfig(prj, 'code');
-        console.log('companyCode -> '+companyCode);
-        s.set(p.appConfig.company, companyCode);
-        s.del(p.appConfig.value);
-        
-        await s.dispatch(r.appConfig.get());
-
+        await s.dispatch(r.appConfig.get({prj, platform}));
         let value = s.get(p.appConfig.value);
         this.setState({value: value.toJS()});
     }

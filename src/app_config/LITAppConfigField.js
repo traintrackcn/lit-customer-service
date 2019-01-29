@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getConfig } from '../project/prj-utils';
 // import LITGETConfig from './LITGETConfig';
 // import LITPUTConfig from './LITPUTConfig';
-import { Spinner } from 'reactstrap';
+import LITProcessing from '../LITProccesing';
 import LITAppConfigItemView from './LITAppConfigItemView';
 
 import Modal from 'react-responsive-modal';
@@ -36,23 +36,8 @@ class LITAppConfigField extends PureComponent {
     }
 
     async run({prj, platform}) {
-        
-        if (!prj) return;
-
-        console.log('LITAppConfigField run() prj ->',prj.get('id'));
-
-        if (prj === this.prj 
-            && platform === this.platform) return;
-
-        this.prj = prj;
-        this.platform = platform;
-
-        let companyCode = getConfig(prj, 'code');
-        console.log('companyCode -> '+companyCode);
-        s.set(p.appConfig.company, companyCode);
-        s.del(p.appConfig.value);
-        
-        await s.dispatch(r.appConfig.get());
+        console.log('LITAppConfigField run() prj ->',prj.get('id'), 'platform ->', platform);
+        await s.dispatch(r.appConfig.get({prj, platform}));
     }
 
     async componentWillMount(){
@@ -90,7 +75,7 @@ class LITAppConfigField extends PureComponent {
         const loading = this.props.loading;
         let value = s.get(p.appConfig.value);
         
-        if (loading) return (<Spinner type='grow' color='primary' />);
+        if (loading) return (<LITProcessing />);
         if (!value) return null;
         let category = this.props.category;
         // const collection = value.get(category);
@@ -109,7 +94,7 @@ class LITAppConfigField extends PureComponent {
                         modal: styles.customModal,
                     }}
                     >
-                <h2>Simple centered modal</h2>
+                <h2>Simple modal</h2>
                 sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
                 sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk
                 sdlk dflkd flksdf jdksfj dslkfj kdsfj ldskf dkfjskdjf ksdfj kdsjf kdsjf kdsjf kds jfkdsj fkds jfkdsjf ksdjf ksd jfksdjf ksd jfkdsjfkdsj fkjds kfjsd fksdj fk

@@ -4,8 +4,6 @@ import '../index.css';
 import { connect } from 'react-redux';
 import s from '../store';
 import p from '../rPath';
-import { getPlans } from '../project/prj-utils';
-import LITBillingMenuItemView from '../billing/LITBillingMenuItemView';
 import { categories, platforms } from './LITAppConfigDefine';
 import menuS from '../css/menu.module.css';
 import LITPlatformDropdown from './LITPlatformDropdown';

@@ -3,6 +3,7 @@ import LITReducer from 'lit-react/src/LITReducer';
 import p from '../rPath';
 import LITGETConfig from './LITGETConfig';
 import LITPUTConfig from './LITPUTConfig';
+import { prj_getConfig } from '../project/prj-utils';
 
 export default class LITAppConfigReducer extends LITReducer{
 
@@ -10,7 +11,60 @@ export default class LITAppConfigReducer extends LITReducer{
         super();
 
         this.platform = undefined;
-        this.code = undefined;
+        this.company = undefined;
+
+    }
+
+    get({prj, platform}) {
+        
+        return async (dispatch) => {
+
+            const r = this.r;
+            const s = this.s;
+
+            try{
+
+                console.log("r -> "+r);
+                console.log("s -> "+s);
+
+                let company = prj_getConfig(prj, 'code');
+
+                //if cached, won't GET 
+                if (company 
+                    && platform 
+                    && company === this.company 
+                    && platform === this.platform){
+                    return;
+                }
+
+                //remember requested parameters
+                this.company = company;
+                this.platform = platform;
+
+                
+                dispatch(this.SET(['loading'], true));
+                // let company = s.get(p.appConfig.company);
+                // let platform = s.get(p.appConfig.platform);
+                const state = await LITGETConfig({
+                    company: this.company, 
+                    platform: this.platform
+                });
+                
+                console.log('state -> ', JSON.stringify(state, null, 2));
+
+                dispatch(this.SET(['value'], fromJS(state)));
+                dispatch(this.DELETE(['loading']));
+
+            }catch(e){
+                console.log('e -> '+JSON.stringify(e, null, 2));
+
+                // dispatch ( r.processing.DISMISS() );
+                return e;
+            }
+            
+            
+        }
+
     }
 
     put(){
@@ -43,41 +97,7 @@ export default class LITAppConfigReducer extends LITReducer{
         }
     }
 
-    get() {
-        
-        return async (dispatch) => {
-
-            const r = this.r;
-            const s = this.s;
-
-            try{
-
-                console.log("r -> "+r);
-                console.log("s -> "+s);
-
-                
-                dispatch(this.SET(['loading'], true));
-                let company = s.get(p.appConfig.company);
-                let platform = s.get(p.appConfig.platform);
-                const state = await LITGETConfig({company, platform});
-                
-                console.log('state -> ', JSON.stringify(state, null, 2));
-
-                dispatch(this.SET(['value'], fromJS(state)));
-                dispatch(this.SET(['loading'], true));
-                dispatch(this.DELETE(['loading']));
-
-            }catch(e){
-                console.log('e -> '+JSON.stringify(e, null, 2));
-
-                // dispatch ( r.processing.DISMISS() );
-                return e;
-            }
-            
-            
-        }
-
-    }
+    
 
 
 

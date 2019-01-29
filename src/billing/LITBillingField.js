@@ -4,7 +4,7 @@ import p from '../rPath';
 import { connect } from 'react-redux';
 import billingS from '../css/billing.module.css';
 import { Table } from 'reactstrap';
-import { getConfig } from '../project/prj-utils';
+import { prj_getConfig } from '../project/prj-utils';
 
 class LITBillingField extends PureComponent {
 
@@ -19,8 +19,8 @@ class LITBillingField extends PureComponent {
     render() {
         let prj = this.props.prj;
         let submenu = this.props.submenu;
-        let code = getConfig(prj, 'code');
-        let customer = getConfig(prj, 'customer');
+        let code = prj_getConfig(prj, 'code');
+        let customer = prj_getConfig(prj, 'customer');
         
         console.log('submenu -> '+submenu);
 

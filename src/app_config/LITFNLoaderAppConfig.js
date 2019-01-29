@@ -40,7 +40,11 @@ class LITFNLoaderAppConfig extends PureComponent {
                     <LITAppConfigAdvField />
                 }
 
-                <LITAppConfigField />
+                {
+                    category !== "EXPERT" &&
+                    <LITAppConfigField />
+                }
+                
             </div>
         )
 
