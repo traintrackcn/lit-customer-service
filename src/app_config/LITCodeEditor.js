@@ -74,6 +74,7 @@ export default class LITJSONField extends PureComponent{
                     // enableSnippets: false,
                     showLineNumbers: true,
                     tabSize: 2,
+                    wrap: true,
                 }}
             />
         );

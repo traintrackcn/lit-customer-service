@@ -81,10 +81,10 @@ class LITAppConfigAdvField extends PureComponent {
 
         console.log('render()');
 
-        const h = 500;
+        // const h = 500;
         // if (!component) return null;
         return (
-            <div style={{border: '0px solid', height: h,}}>
+            <div style={{border: '0px solid'}}>
                 
                     
                 <div style={{

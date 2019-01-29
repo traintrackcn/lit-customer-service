@@ -151,7 +151,7 @@ code {
 
 .proccesing-container {
   width: 100%;
-  border: solid 1px;
+  /* border: solid 1px; */
   display: flex;
   height: 30vh;
   align-items: center;
