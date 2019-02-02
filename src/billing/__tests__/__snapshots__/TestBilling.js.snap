@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Array [
+  Object {
+    "date": "2018.12",
+    "plan": "Elite",
+  },
+  Object {
+    "date": "2018.11",
+    "plan": "Elite",
+  },
+  Object {
+    "date": "2018.10",
+    "plan": "Elite",
+  },
+  Object {
+    "date": "2018.9",
+    "plan": "Elite",
+  },
+  Object {
+    "date": "2017.8",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2017.1",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.12",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.11",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.10",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.9",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.8",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.7",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.6",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.5",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.4",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.3",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.2",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2016.1",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2015.12",
+    "plan": "Basic",
+  },
+  Object {
+    "date": "2015.11",
+    "plan": "Basic",
+  },
+]
+`;

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import LITCodeEditor from './LITCodeEditor';
 import { fromJS } from 'immutable';
-import LITProcessing from '../LITProccesing';
+import LITProcessing from '../LITProcessing';
 import Modal from 'react-responsive-modal';
 import styles from '../index.module.css';
 

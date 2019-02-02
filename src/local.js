@@ -3,6 +3,8 @@ export const KEY_INTUIT_CALLBACK_URI = "KEY_INTUIT_CALLBACK_URI";
 export const KEY_USER_DATA = "KEY_USER_DATA";
 export const KEY_PRJ_DATA = "KEY_PRJ_DATA";
 
+export const KEY_TMP_INTUIT_INVOICE_DATA = "KEY_TMP_INTUIT_INVOICE_DATA";
+
 
 class LITLocalStore {
     set(key, value) {

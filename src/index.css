@@ -206,3 +206,50 @@ code {
   cursor: pointer;
   
 }
+
+
+.billing-main {
+  padding: 0;
+}
+
+.billing-item-container {
+  border: solid 1px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 6px;
+  border-radius: 6px 6px 6px 6px;
+  overflow: hidden;
+}
+
+.billing-item-title {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  
+}
+
+.billing-item-control {
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: flex-end; */
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-left: solid 1px #999;
+  /* width: 50px; */
+  width: 100px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.billing-item-control-issue {
+  color: #007BFF;
+  /* font-weight: bold; */
+  text-decoration: underline;
+  /* background: #007BFF;
+  color: white; */
+}

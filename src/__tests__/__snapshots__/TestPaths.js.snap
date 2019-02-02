@@ -4,7 +4,7 @@ exports[` 1`] = `
 Array [
   "r",
   "appConfig",
-  "company",
+  "platform",
 ]
 `;
 
@@ -12,7 +12,7 @@ exports[` 2`] = `
 Array [
   "r",
   "appConfig",
-  "platform",
+  "category",
 ]
 `;
 
@@ -20,8 +20,41 @@ exports[` 3`] = `
 Array [
   "r",
   "appConfig",
-  "category",
+  "value",
 ]
 `;
 
-exports[` 4`] = `undefined`;
+exports[` 4`] = `
+Array [
+  "r",
+  "billing",
+  "plan",
+]
+`;
+
+exports[` 5`] = `
+Array [
+  "r",
+  "billing",
+  "invoice",
+  "collection",
+]
+`;
+
+exports[` 6`] = `
+Array [
+  "r",
+  "billing",
+  "item",
+  "collection",
+]
+`;
+
+exports[` 7`] = `
+Array [
+  "r",
+  "billing",
+  "customer",
+  "collection",
+]
+`;

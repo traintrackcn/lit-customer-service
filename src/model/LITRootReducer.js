@@ -4,6 +4,7 @@ import LITSignInReducer from '../sign_in/LITSignInReducer';
 import LITProjectReducer from '../project/LITProjectReducer';
 import LITIntuitReducer from '../intuit/LITIntuitReducer';
 import LITAppConfigReducer from '../app_config/LITAppConfigReducer';
+import LITBillingReducer from '../billing/reducer/LITBillingReducer';
 // import LITNavReducer from '../LITNavReducer';
 
 export default class LITRootReducer extends LITReducer{
@@ -16,12 +17,14 @@ export default class LITRootReducer extends LITReducer{
         this.prj = new LITProjectReducer();
         this.intuit = new LITIntuitReducer();
         this.appConfig = new LITAppConfigReducer();
+        this.billing = new LITBillingReducer();
         // this.nav = new LITNavReducer();
 
         this.subReducers.signIn = this.signIn;
         this.subReducers.prj = this.prj;
         this.subReducers.intuit = this.intuit;
         this.subReducers.appConfig = this.appConfig;
+        this.subReducers.billing = this.billing;
         // this.subReducers.nav = this.nav;
     }
 

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getConfig } from '../project/prj-utils';
 // import LITGETConfig from './LITGETConfig';
 // import LITPUTConfig from './LITPUTConfig';
-import LITProcessing from '../LITProccesing';
+import LITProcessing from '../LITProcessing';
 import LITAppConfigItemView from './LITAppConfigItemView';
 
 import Modal from 'react-responsive-modal';

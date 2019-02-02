@@ -9,15 +9,16 @@ import '../index.css';
 import { BILLING_STATUSES, BILLING_PERIODS } from './LITBillingDefine'
 import menuS from '../css/menu.module.css';
 
-class LITBillingMenu extends LITPureComponent {
+class LITBillingNavigator extends LITPureComponent {
 
 
-    onReceiveProps({prj, period}){
+    onReceiveProps({prj, status}){
         if (!prj) return;
         // let plans = prj_getPlans(prj);
-        if (!period){
+        if (!status){
             s.set(p.billing.period, BILLING_PERIODS[0]); //will trigger 1 more rendering
-            console.log('LITBillingMenu changed state while rendering');
+            s.set(p.billing.status, BILLING_STATUSES[0]);
+            console.log('Will trigger 1 render()');
         }
     }
 
@@ -31,7 +32,7 @@ class LITBillingMenu extends LITPureComponent {
 
         return (
             <div  className={['sub-menu-container'].join(' ')}>
-                <LITPlanDropdown prj={prj} value={this.props.period} />
+                {/* <LITPlanDropdown prj={prj} value={this.props.period} /> */}
 
                 {
                     this.items()
@@ -78,7 +79,7 @@ const mapStateToProps = (state, ownProps) => {
   
 //   const mapDispatchToProps = { increment, decrement, reset }
   
-export default connect(mapStateToProps)(LITBillingMenu)
+export default connect(mapStateToProps)(LITBillingNavigator)
 
 
 class ItemView extends LITPureComponent {

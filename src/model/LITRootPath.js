@@ -23,6 +23,8 @@ export default class LITRootPath extends LITPath{
         this.intuit = new LITIntuitPath(this.path.concat('intuit'));
         this.appConfig = new LITAppConfigPath(this.path.concat('appConfig'));
         this.billing = new LITBillingPath(this.path.concat('billing'));
+
+        
         
     }
 }

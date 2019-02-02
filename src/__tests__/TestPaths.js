@@ -11,6 +11,9 @@ describe('', () => {
         expect(p.appConfig.category).toMatchSnapshot();
         expect(p.appConfig.value).toMatchSnapshot();
         expect(p.billing.plan).toMatchSnapshot();
+        expect(p.billing.invoice.collection).toMatchSnapshot();
+        expect(p.billing.item.collection).toMatchSnapshot();
+        expect(p.billing.customer.collection).toMatchSnapshot();
 
     });
     

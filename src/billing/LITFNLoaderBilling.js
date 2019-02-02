@@ -1,5 +1,5 @@
 import LITPureComponent from '../LITPureComponent';
-import LITBillingMenu from './LITBillingMenu';
+import LITBillingNavigator from './LITBillingNavigator';
 import LITBillingField from './LITBillingField';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -9,7 +9,7 @@ class LITFNLoaderBilling extends LITPureComponent{
     render() {
         return (
             <div>
-                <LITBillingMenu />
+                <LITBillingNavigator />
                 <LITBillingField />
             </div>
         )
