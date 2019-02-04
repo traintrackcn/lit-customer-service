@@ -1,3 +1,5 @@
+import { formattedLastDateOfMonth, formattedFirstDateOfMonth } from "../common/date-utils";
+
 export const BILLING_STATUS_ISSUE = 'ISSUE';
 export const BILLING_STATUS_RECEIVING = 'RECEIVING';
 export const BILLING_STATUS_PAID = 'PAID';
@@ -55,9 +57,13 @@ const generateMonths = (rawPlan) => {
         var d = new Date(periodEnd.getTime());
         d.setMonth( d.getMonth() - index);
 
+        // var ld = new Date(d.getFullYear(), d.getMonth()+1, 0); //last day of the month
+
         var m = {};
 
         m.date = d.getFullYear()+'.'+(d.getMonth()+1);
+        m.startDate = formattedFirstDateOfMonth(d);
+        m.endDate = formattedLastDateOfMonth(d);
         m.plan = plan;
 
         // console.log(d.getFullYear()+'.'+(d.getMonth()+1));

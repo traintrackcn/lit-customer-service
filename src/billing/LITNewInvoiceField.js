@@ -42,7 +42,8 @@ export default class LITNewInvoiceField extends LITPureComponent {
         return (
             <div>
                 <div>{this.month.date}</div>
-
+                <div>{this.month.startDate}</div>
+                <div>{this.month.endDate}</div>
                 <div>
                     {this.customerOptions()}
                 </div>
