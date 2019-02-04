@@ -10,7 +10,7 @@ export default ({prj, month}) => {
         console.log('prj -> '+JSON.stringify(prj, null, 2));
     
         // const type = 'tracker/time_entries.json?project_id='+prj.get('id')+'&spent_on=><YYYY-MM-DD|YYYY-MM-DD';
-        const type = 'tracker/time_entries.json?project_id='+prj.get('id')+'&spent_on=><'+startDate+'|'+endDate;
+        const type = 'tracker/time_entries.json?limit=100&project_id='+prj.get('id')+'&spent_on=><'+startDate+'|'+endDate;
 
         let info = LITFetchInfo({
             method: "GET",
@@ -21,7 +21,7 @@ export default ({prj, month}) => {
             
         try {   
             const response = await LITFetch({info});
-            resolve(response.issues);
+            resolve(response['time_entries']);
         } catch (e) {
             // console.log('error -> '+JSON.stringify(error, null, 2));
             reject(e);
