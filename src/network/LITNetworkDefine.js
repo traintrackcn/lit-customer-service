@@ -5,7 +5,9 @@
 // const protocol = "https://";
 // export const endPoint = "https://api-dev.abovegem.com/MONITOR/0/";
 // export const endPoint = "http://litmonitor.asuscomm.com:8888/0/";
-export const endPoint = "http://10.0.1.9:8080/0/";
+// export const endPoint = "http://10.0.1.9:8080/0/";
+// export const endPoint = "http://localhost:8080/0/";
+export const endPoint = "http://server.local:8080/0/";
 
 
 // export let proxyProtocol = "http://";

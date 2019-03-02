@@ -160,11 +160,19 @@ class ItemView extends LITPureComponent{
 
     return (
       <div className={'billing-item-container'}>
-        <div className={'billing-item-title'}>{title}</div>
+        <div className={'billing-item-title'}>
+        <div>
+        {title}
+        </div>
+        <div><a href="#">review</a></div>
+        </div>
         <div className={['billing-item-control', 'billing-item-control-issue'].join(' ')}
           onClick={this.onClick}
         
-        >ISSUE</div>
+        >
+        <div>ISSUE
+        </div>
+        </div>
       </div>
     )
   }
